@@ -3,7 +3,7 @@
 return [
     [
         'slug' => 'sample-local-service-website',
-        'title' => 'Sample: Local Service Website Concept',
+        'title' => 'Local Service Website Concept',
         'summary' => 'An illustrative website concept showing how a local service business could present its offer and capture inquiries.',
         'overview' => '<p>This sample shows the kind of website structure we would propose for a local service business: a clear offer, simple navigation, and contact options on every page.</p>',
         'challenges' => '<p>Local service sites often bury key details such as service areas, what is included, and how to get in touch. Many also perform poorly on mobile, where a large share of local searches begin.</p>',
@@ -12,7 +12,7 @@ return [
     ],
     [
         'slug' => 'sample-search-visibility-roadmap',
-        'title' => 'Sample: Search Visibility Roadmap',
+        'title' => 'Search Visibility Roadmap',
         'summary' => 'An illustrative SEO roadmap showing how we organize research, technical fixes, and content priorities into a clear plan.',
         'overview' => '<p>This sample shows the format of a typical SEO roadmap: a benchmark, a list of issues ranked by priority, and a phased plan a business can follow.</p>',
         'challenges' => '<p>Without a roadmap, SEO tends to become a list of disconnected tasks. Teams struggle to tell which work matters most or how it supports their business goals.</p>',
@@ -21,7 +21,7 @@ return [
     ],
     [
         'slug' => 'sample-multi-channel-campaign',
-        'title' => 'Sample: Multi-Channel Campaign Plan',
+        'title' => 'Multi-Channel Campaign Plan',
         'summary' => 'An illustrative campaign plan showing how search ads, social, and email can work together around one offer.',
         'overview' => '<p>This sample shows how a single offer could be planned across several channels, with shared messaging and one measurement framework.</p>',
         'challenges' => '<p>When channels are planned separately, messages drift apart, budgets compete, and reporting becomes difficult to compare.</p>',

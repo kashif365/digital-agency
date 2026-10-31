@@ -13,12 +13,6 @@ use Illuminate\Database\Seeder;
  */
 class PortfolioSeeder extends Seeder
 {
-    private const IMAGES = [
-        'sample-local-service-website' => 'work-website',
-        'sample-search-visibility-roadmap' => 'work-roadmap',
-        'sample-multi-channel-campaign' => 'work-campaign',
-    ];
-
     public function run(): void
     {
         foreach (require __DIR__.'/content/portfolio.php' as $index => $row) {
@@ -35,10 +29,6 @@ class PortfolioSeeder extends Seeder
 
             if ($project->wasRecentlyCreated) {
                 $project->services()->sync(Service::whereIn('slug', $row['services'])->pluck('id'));
-            }
-
-            if (! $project->featured_media_id) {
-                $project->update(['featured_media_id' => MediaSeeder::id(self::IMAGES[$row['slug']])]);
             }
         }
     }

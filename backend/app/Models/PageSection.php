@@ -13,15 +13,16 @@ class PageSection extends Model
 
     /** Layouts the frontend knows how to render. */
     public const TYPES = [
-        'hero' => 'Homepage hero with form',
+        'hero' => 'Homepage hero',
         'page_hero' => 'Page header',
-        'statement' => 'Centered statement',
-        'intro' => 'Image with feature list',
+        'statement' => 'Statement with supporting points',
+        'intro' => 'Story with feature list',
         'dual_cta' => 'Two call-to-action cards',
         'split' => 'Image with numbered steps',
-        'services_grid' => 'Services grid',
+        'services_grid' => 'Services by category',
         'value_grid' => 'Value propositions',
         'process' => 'Numbered process',
+        'comparison' => 'Before and after comparison',
         'industries_grid' => 'Industries grid',
         'portfolio_grid' => 'Portfolio grid',
         'testimonials' => 'Testimonials carousel',

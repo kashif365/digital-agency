@@ -1,27 +1,20 @@
-import { ArrowRight } from 'lucide-react';
-import Link from '@/components/ui/AppLink';
+import Button from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
 import Reveal from '@/components/ui/Reveal';
 
 export default function DualCta({ data }) {
   return (
-    <section className="bg-dark py-14 md:py-16">
+    <section className="bg-night py-16 md:py-20">
       <Container>
-        <Reveal className="grid gap-6 lg:grid-cols-2">
+        <Reveal className="grid gap-5 lg:grid-cols-2">
           {(data.items ?? []).map((item) => (
-            <div key={item.title} className="rounded-3xl border border-white/10 bg-gradient-to-br from-teal/40 to-white/[0.03] p-8 md:p-12">
-              {item.text ? (
-                <p className="inline-flex rounded-full bg-white/10 px-4 py-1.5 font-display text-[0.8125rem] font-bold uppercase tracking-wide text-white">{item.text}</p>
-              ) : null}
-              <h2 className="mt-5 text-[1.75rem] font-bold leading-tight text-white md:text-[2rem]">{item.title}</h2>
+            <div key={item.title} className="rounded-[var(--radius-card)] border border-white/10 bg-white/[0.04] p-8 md:p-12">
+              {item.text ? <p className="text-sm font-semibold uppercase tracking-[0.12em] text-brand-light">{item.text}</p> : null}
+              <h2 className="mt-4 text-3xl font-medium leading-tight text-white">{item.title}</h2>
               {item.cta_label ? (
-                <Link
-                  href={item.cta_url}
-                  className="group mt-7 inline-flex items-center gap-2.5 rounded-full bg-white px-8 py-4 font-display font-bold text-heading transition hover:bg-brand hover:text-white"
-                >
+                <Button href={item.cta_url} variant="white" arrow className="mt-7">
                   {item.cta_label}
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                </Link>
+                </Button>
               ) : null}
             </div>
           ))}

@@ -1,6 +1,6 @@
-# Digital Marketing Agency Website
+# Evergrove
 
-A lead-generation website for a digital marketing agency. A Next.js public site reads all of its content from a Laravel API, and a Filament admin panel manages that content, the leads, and the site settings.
+The lead-generation website for Evergrove, a digital marketing agency. A Next.js public site reads all of its content from a Laravel API, and a Filament admin panel manages that content, the leads, and the site settings.
 
 | Part | Stack | Local URL |
 |---|---|---|
@@ -27,7 +27,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-In `.env`, set `ADMIN_SEED_EMAIL`, `ADMIN_SEED_PASSWORD`, and `FRONTEND_REVALIDATE_SECRET`. Then create a MySQL database named `digital_agency` and run:
+In `.env`, set `ADMIN_SEED_EMAIL`, `ADMIN_SEED_PASSWORD`, and `FRONTEND_REVALIDATE_SECRET`, plus `DB_PORT` and `DB_PASSWORD` if your MySQL differs from the defaults. Then create a MySQL database named `digital_agency` and run:
 
 ```bash
 php artisan migrate --seed
@@ -64,9 +64,10 @@ npm run dev
 ## How content works
 
 - **Everything editable lives in Laravel.** The frontend holds layouts, not copy. Pages are lists of typed sections that editors can reorder, hide, and rewrite under **Pages** in the admin.
-- **`{company}` is a token.** Write it anywhere in content. The API replaces it with the name in Site Settings, so renaming the business is one change.
+- **`{company}` is a token.** Write it anywhere in content. The API replaces it with the name in Site Settings, so renaming the business is one change. It is seeded from `SEED_COMPANY_NAME`.
 - **Edits appear within seconds.** Saving a record queues a refresh of the frontend cache. If that fails, pages refresh on their own within five minutes.
 - **Blank means hidden.** Contact details, social icons, the utility bar, testimonials, and verified outcomes only render once real data exists. Empty sections never show placeholders.
+- **Seeders never overwrite.** They only add missing records, so copy changed in `database/seeders/content/` reaches a database that is already seeded only through the admin, or through `php artisan migrate:fresh --seed`, which erases all data.
 
 ### Guardrails against unverified claims
 
@@ -108,4 +109,5 @@ frontend/   Next.js site
   components/home/       Section components
   lib/                   API client, SEO, structured data, validation
 docs/       API, deployment, design system
+.github/    CI: backend tests and frontend lint
 ```

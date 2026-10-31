@@ -25,8 +25,8 @@ Required PHP extensions: `pdo_mysql`, `mbstring`, `openssl`, `fileinfo`, `gd` (w
 | `FRONTEND_REVALIDATE_SECRET` | A long random string, matching the frontend |
 | `ADMIN_NOTIFICATION_EMAIL` | Fallback lead recipient |
 | `ADMIN_SEED_EMAIL`, `ADMIN_SEED_PASSWORD` | First super admin. Remove from `.env` after seeding. |
-| `SEED_COMPANY_NAME` | Client business name |
-| `TRUSTED_PROXIES` | Load balancer IPs, or `*` if only reachable through one. Without this, rate limits treat all visitors as one IP. |
+| `SEED_COMPANY_NAME` | Business name. Defaults to Evergrove. |
+| `TRUSTED_PROXIES` | Load balancer IPs, or `*` if only reachable through one. Without this, every visitor looks like one IP, so the form limits of 5 per minute and 20 per hour apply to the whole site and real leads get blocked. Leave blank if there is no proxy. |
 
 ### Release steps
 
@@ -59,7 +59,13 @@ stdout_logfile=/var/www/backend/storage/logs/worker.log
 stopwaitsecs=3600
 ```
 
-No cron job is required. Scheduled blog posts go live based on their publish time.
+### Scheduler
+
+Add one cron entry. It clears expired admin API tokens daily. Scheduled blog posts need no cron, because they go live based on their publish time.
+
+```cron
+* * * * * cd /var/www/backend && php artisan schedule:run >> /dev/null 2>&1
+```
 
 ### PHP-FPM and OPcache
 
@@ -94,11 +100,22 @@ Uploaded images are optimized from `/storage/**` on the API host. If you move me
 
 Scheduled posts appear within five minutes of their publish time, because nothing triggers a refresh at that moment.
 
+### Security headers
+
+The site sends a Content Security Policy in production, plus HSTS when `NEXT_PUBLIC_SITE_URL` is HTTPS. The policy allows Google Analytics and Tag Manager. If you add a tag that loads from another domain through Tag Manager, add that domain to `contentSecurityPolicy` in `next.config.mjs`.
+
+HSTS applies to subdomains, so make sure `api.example.com` and any other subdomains serve HTTPS before launch.
+
 ## Launch checklist
+
+### Business decisions
+
+- [ ] Check that the Evergrove name is free to use: run a trademark search in each country you trade in, and buy the domain
+- [ ] Confirm the promises in the **Why Evergrove** comparison on the homepage match how you actually work, especially that clients keep their own ad accounts and data
 
 ### Client content
 
-- [ ] Set the company name, logo, tagline, and description in **Site Settings**
+- [ ] Review the company name, tagline, and description in **Site Settings**, and upload a logo if you have one beyond the built-in wordmark
 - [ ] Add the phone, email, address, and social profiles
 - [ ] Set the **Lead notification email**
 - [ ] Review all starter copy: services, industries, FAQs, About page, and blog articles
@@ -106,7 +123,7 @@ Scheduled posts appear within five minutes of their publish time, because nothin
 - [ ] Confirm which industries the business targets. Unpublish the rest, or turn off their pages.
 - [ ] Replace the illustrative samples with approved case studies, or keep them labelled
 - [ ] Add client-approved testimonials, or leave the section hidden
-- [ ] Replace the starter stock photos with real, higher-resolution imagery, and add a default social sharing image
+- [ ] Add real team details to the About page, and replace the starter blog photos as real ones become available
 - [ ] Review the budget options and their currency in **Site Settings > Forms**
 
 ### Technical
@@ -114,8 +131,9 @@ Scheduled posts appear within five minutes of their publish time, because nothin
 - [ ] `APP_DEBUG=false` and a strong, unique super admin password
 - [ ] HTTPS on both domains
 - [ ] Send a test lead and confirm the email arrives
-- [ ] Confirm the queue worker survives a server restart
+- [ ] Confirm the queue worker survives a server restart, and the scheduler cron entry is in place
+- [ ] Set `TRUSTED_PROXIES` if the site sits behind a load balancer or CDN
 - [ ] Database and `storage/app/public` backups are scheduled
-- [ ] Add the analytics IDs in **Site Settings > Analytics**. Add a cookie consent banner first if your visitors' region requires one, since the site does not include one.
+- [ ] Add the analytics IDs in **Site Settings > Analytics**. A cookie notice appears automatically, and analytics load only after a visitor accepts.
 - [ ] Submit `https://example.com/sitemap.xml` to Google Search Console
 - [ ] Add redirects for any old URLs in **Administration > Redirects**

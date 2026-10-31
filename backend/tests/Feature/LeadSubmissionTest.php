@@ -9,9 +9,14 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\WebsiteSetting;
 use App\Notifications\NewLeadReceived;
+use App\Providers\AppServiceProvider;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Middleware\TrustProxies;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use Tests\TestCase;
 
 class LeadSubmissionTest extends TestCase
@@ -81,7 +86,7 @@ class LeadSubmissionTest extends TestCase
     public function test_the_public_api_never_uses_cookie_sessions(): void
     {
         $this->assertNotContains(
-            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            EnsureFrontendRequestsAreStateful::class,
             app('router')->getMiddlewareGroups()['api']
         );
     }
@@ -89,7 +94,7 @@ class LeadSubmissionTest extends TestCase
     public function test_the_notification_is_queued(): void
     {
         $this->assertContains(
-            \Illuminate\Contracts\Queue\ShouldQueue::class,
+            ShouldQueue::class,
             class_implements(NewLeadReceived::class)
         );
     }
@@ -144,6 +149,39 @@ class LeadSubmissionTest extends TestCase
         $this->postJson('/api/v1/leads', $this->payload(['message' => $spam]))->assertCreated();
 
         $this->assertDatabaseCount('leads', 0);
+    }
+
+    public function test_a_failed_save_does_not_block_the_visitors_retry(): void
+    {
+        $failing = true;
+
+        Event::listen('eloquent.creating: '.Lead::class, function () use (&$failing) {
+            if ($failing) {
+                throw new \RuntimeException('Database unavailable');
+            }
+        });
+
+        $this->postJson('/api/v1/leads', $this->payload())->assertServerError();
+        $this->assertDatabaseCount('leads', 0);
+
+        $failing = false;
+
+        $this->postJson('/api/v1/leads', $this->payload())->assertCreated();
+        $this->assertDatabaseCount('leads', 1);
+    }
+
+    public function test_trusted_proxies_are_read_from_config_so_rate_limits_see_real_visitors(): void
+    {
+        config(['agency.trusted_proxies' => '*']);
+        (new AppServiceProvider($this->app))->boot();
+
+        $this->withServerVariables(['REMOTE_ADDR' => '10.0.0.1', 'HTTP_X_FORWARDED_FOR' => '203.0.113.9'])
+            ->postJson('/api/v1/leads', $this->payload())
+            ->assertCreated();
+
+        TrustProxies::flushState();
+
+        $this->assertSame('203.0.113.9', Lead::sole()->ip_address);
     }
 
     public function test_a_duplicate_rapid_submission_creates_one_lead_and_one_email(): void

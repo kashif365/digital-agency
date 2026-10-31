@@ -29,7 +29,7 @@ function Block({ title, html }) {
 
   return (
     <div>
-      <h2 className="text-2xl font-extrabold text-heading">{title}</h2>
+      <h2 className="text-3xl font-medium text-heading">{title}</h2>
       <Prose html={html} className="mt-3" />
     </div>
   );
@@ -52,15 +52,15 @@ export default async function ProjectPage({ params }) {
   return (
     <>
       <HeroShell breadcrumbs={[{ label: 'Our Work', href: '/portfolio' }, { label: project.title }]} image={project.image}>
-        <div className="mt-7 max-w-3xl">
+        <div className="mt-10 max-w-4xl">
           {project.is_illustrative ? <IllustrativeBadge className="mb-4" /> : null}
-          <h1 className="text-4xl font-extrabold leading-[1.1] text-white md:text-[3.25rem]">{project.title}</h1>
-          {project.summary ? <p className="mt-5 text-lg leading-relaxed text-white/75">{project.summary}</p> : null}
+          <h1 className="text-[2.75rem] font-semibold leading-[1.05] tracking-[-0.03em] text-white md:text-6xl">{project.title}</h1>
+          {project.summary ? <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75 md:text-xl">{project.summary}</p> : null}
         </div>
       </HeroShell>
 
-      <section className="py-14 md:py-20">
-        <Container className="grid gap-10 lg:grid-cols-[1.7fr_1fr] lg:gap-14">
+      <section className="py-20 md:py-28">
+        <Container className="grid gap-10 lg:grid-cols-[1.7fr_1fr] lg:gap-20">
           <div className="space-y-10">
             {project.is_illustrative ? (
               <p className="flex items-start gap-2.5 rounded-2xl bg-brand-tint px-5 py-3.5 text-sm font-medium text-heading">
@@ -68,7 +68,7 @@ export default async function ProjectPage({ params }) {
                 This is an illustrative example of our deliverables. It is not a client project and shows no real results.
               </p>
             ) : null}
-            <Block title="Project Overview" html={project.overview} />
+            <Block title="Overview" html={project.overview} />
             <Block title="Challenges" html={project.challenges} />
             <Block title="Strategy" html={project.strategy} />
             <Block title="Outcomes" html={project.outcomes} />
@@ -97,11 +97,10 @@ export default async function ProjectPage({ params }) {
       </section>
 
       <CtaBanner
-        last
         data={{
-          heading: 'Have a Project in Mind?',
+          heading: 'Have a project *in mind*?',
           lead: 'Tell us what you are working on and we will follow up to discuss how we can help.',
-          cta_label: "Let's Talk About Your Project",
+          cta_label: 'Get a free consultation',
           cta_url: '/free-consultation',
         }}
       />

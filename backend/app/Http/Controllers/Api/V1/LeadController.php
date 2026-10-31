@@ -32,13 +32,13 @@ class LeadController extends Controller
             return $success;
         }
 
-        $lead = Lead::create([
+        $lead = $guard->store($fingerprint, fn () => Lead::create([
             ...collect($data)->except(['company_fax', 'rendered_at'])->all(),
             'service_name' => Service::whereKey($data['service_id'])->value('title'),
             'ip_address' => $request->ip(),
             'user_agent' => Str::limit((string) $request->userAgent(), 490, ''),
             'fingerprint' => $fingerprint,
-        ]);
+        ]));
 
         if ($recipient = $guard->notificationRecipient()) {
             // The lead is already stored, so a mail outage must not fail the visitor's request.

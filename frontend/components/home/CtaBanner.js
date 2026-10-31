@@ -1,19 +1,18 @@
 import Button from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
-import { cn } from '@/lib/utils';
+import { Heading } from '@/components/ui/SectionHeading';
 
-/** Dark bar that overlaps the footer when it is the last thing on the page. */
-export default function CtaBanner({ data, last = false }) {
+export default function CtaBanner({ data }) {
   return (
-    <section className={cn('relative z-10 pt-12 md:pt-16', last ? '-mb-20' : 'pb-12')}>
+    <section className="py-16 md:py-20">
       <Container>
-        <div className="topo-lines flex flex-col items-start justify-between gap-7 rounded-2xl bg-charcoal px-7 py-10 md:px-12 lg:flex-row lg:items-center">
-          <div className="max-w-3xl">
-            <h2 className="text-[1.75rem] font-bold leading-tight text-white md:text-[2.25rem]">{data.heading}</h2>
-            {data.lead ? <p className="mt-3 leading-relaxed text-white/80">{data.lead}</p> : null}
-          </div>
+        <div className="relative isolate overflow-hidden rounded-[2rem] bg-night px-7 py-14 text-center md:px-12 md:py-20">
+          <div className="backdrop-glow absolute inset-0 -z-20" aria-hidden="true" />
+          <div className="backdrop-grid absolute inset-0 -z-10" aria-hidden="true" />
+          <Heading text={data.heading} dark className="mx-auto max-w-3xl" />
+          {data.lead ? <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/75">{data.lead}</p> : null}
           {data.cta_label ? (
-            <Button href={data.cta_url} shape="soft" arrow className="shrink-0">
+            <Button href={data.cta_url} arrow className="mt-9">
               {data.cta_label}
             </Button>
           ) : null}

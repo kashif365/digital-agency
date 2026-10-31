@@ -13,17 +13,17 @@ export default function MobileNav({ open, items, categories, settings }) {
     <div
       id="mobile-nav"
       className={cn(
-        'fixed inset-x-0 bottom-0 top-[4.5rem] z-40 overflow-y-auto bg-white px-4 pb-10 transition duration-200 sm:px-6 lg:hidden',
+        'fixed inset-x-0 bottom-0 top-20 z-40 overflow-y-auto bg-night px-4 pb-10 text-white transition duration-200 sm:px-6 lg:hidden',
         open ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
       )}
     >
       <nav aria-label="Mobile">
-        <ul className="divide-y divide-line">
+        <ul className="divide-y divide-white/10">
           {items.map((item) => {
             if (item.url !== '/services' || categories.length === 0) {
               return (
                 <li key={item.url}>
-                  <Link href={item.url} className="block py-4 font-display text-lg font-bold text-heading">
+                  <Link href={item.url} className="block py-4 font-display text-2xl font-medium">
                     {item.label}
                   </Link>
                 </li>
@@ -33,7 +33,7 @@ export default function MobileNav({ open, items, categories, settings }) {
             return (
               <li key={item.url}>
                 <div className="flex items-center justify-between">
-                  <Link href={item.url} className="flex-1 py-4 font-display text-lg font-bold text-heading">
+                  <Link href={item.url} className="flex-1 py-4 font-display text-2xl font-medium">
                     {item.label}
                   </Link>
                   <button
@@ -41,7 +41,7 @@ export default function MobileNav({ open, items, categories, settings }) {
                     aria-expanded={servicesOpen}
                     aria-label="Toggle services list"
                     onClick={() => setServicesOpen((value) => !value)}
-                    className="grid size-11 place-items-center rounded-full text-heading"
+                    className="grid size-11 place-items-center rounded-full"
                   >
                     <ChevronDown className={cn('size-5 transition-transform', servicesOpen && 'rotate-180')} aria-hidden="true" />
                   </button>
@@ -50,11 +50,11 @@ export default function MobileNav({ open, items, categories, settings }) {
                   <div className="space-y-5 pb-5">
                     {categories.map((category) => (
                       <div key={category.slug}>
-                        <p className="font-display text-xs font-bold uppercase tracking-[0.12em] text-muted">{category.name}</p>
+                        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/60">{category.name}</p>
                         <ul className="mt-1.5">
                           {category.services.map((service) => (
                             <li key={service.slug}>
-                              <Link href={`/services/${service.slug}`} className="block py-2 font-medium text-heading">
+                              <Link href={`/services/${service.slug}`} className="block py-2 font-medium text-white/85">
                                 {service.title}
                               </Link>
                             </li>

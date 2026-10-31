@@ -30,12 +30,12 @@ class ContactController extends Controller
             return $success;
         }
 
-        $submission = ContactSubmission::create([
+        $submission = $guard->store($fingerprint, fn () => ContactSubmission::create([
             ...collect($data)->except(['company_fax', 'rendered_at'])->all(),
             'ip_address' => $request->ip(),
             'user_agent' => Str::limit((string) $request->userAgent(), 490, ''),
             'fingerprint' => $fingerprint,
-        ]);
+        ]));
 
         if ($recipient = $guard->notificationRecipient()) {
             rescue(fn () => Notification::route('mail', $recipient)->notify(new NewContactMessage($submission)));

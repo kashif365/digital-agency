@@ -32,7 +32,7 @@ export default function TestimonialCarousel({ testimonials }) {
       <ul ref={track} className="relative flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 [scrollbar-width:none]" tabIndex={0} aria-label="Client testimonials">
         {testimonials.map((item) => (
           <li key={item.id} className="w-[88%] shrink-0 snap-start sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
-            <figure className="flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border-2 border-brand bg-white shadow-card">
+            <figure className="flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-white">
               <div className="flex-1 p-7">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <figcaption className="flex items-center gap-3">
@@ -45,7 +45,7 @@ export default function TestimonialCarousel({ testimonials }) {
                 <blockquote className="mt-2 leading-relaxed text-ink">{item.body}</blockquote>
               </div>
               {item.company_name || item.date ? (
-                <p className="mx-3 mb-3 rounded-b-2xl border-t border-line bg-surface px-5 py-4 text-sm font-semibold uppercase tracking-wide text-muted">
+                <p className="mx-3 mb-3 rounded-b-2xl border-t border-line bg-surface px-5 py-4 text-sm font-medium text-muted">
                   {[item.company_name, formatDate(item.date)].filter(Boolean).join(' · ')}
                 </p>
               ) : null}

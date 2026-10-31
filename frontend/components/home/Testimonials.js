@@ -1,5 +1,5 @@
 import Container from '@/components/ui/Container';
-import { GreenRule } from '@/components/ui/SectionHeading';
+import SectionHeading from '@/components/ui/SectionHeading';
 import TestimonialCarousel from './TestimonialCarousel';
 
 /** Stays unpublished until the client has approved at least one testimonial. */
@@ -9,12 +9,9 @@ export default function Testimonials({ data, testimonials }) {
   }
 
   return (
-    <section className="py-14 md:py-20">
+    <section className="bg-surface py-20 md:py-28">
       <Container>
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="text-[1.75rem] font-medium leading-tight text-heading md:text-[2.25rem]">{data.heading}</h2>
-          <GreenRule center />
-        </div>
+        <SectionHeading eyebrow={data.eyebrow} heading={data.heading} className="mb-12" />
         <TestimonialCarousel testimonials={testimonials} />
       </Container>
     </section>

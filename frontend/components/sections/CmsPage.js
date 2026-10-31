@@ -14,11 +14,9 @@ import SectionRenderer from './SectionRenderer';
 /** Fetches only what the page's sections need, so an edit to the layout never over-fetches. */
 async function loadContext(sections, settings) {
   const has = (...types) => sections.some((section) => types.includes(section.type));
-  const showAll = sections.some((section) => section.type === 'services_grid' && section.data.show_all);
 
-  const [allServices, featured, industries, portfolio, testimonials, faqs, posts] = await Promise.all([
-    has('hero', 'consultation_form') || showAll ? getServices() : [],
-    has('services_grid') && !showAll ? getServices({ featured: true }) : [],
+  const [allServices, industries, portfolio, testimonials, faqs, posts] = await Promise.all([
+    has('hero', 'consultation_form', 'services_grid') ? getServices() : [],
     has('industries_grid') ? getIndustries() : [],
     has('portfolio_grid') ? getPortfolio() : null,
     has('testimonials') ? getTestimonials() : [],
@@ -26,7 +24,7 @@ async function loadContext(sections, settings) {
     has('blog_latest') ? getPosts({ perPage: 3 }) : null,
   ]);
 
-  return { settings, allServices, featured, industries, portfolio, testimonials, faqs, posts: posts?.data ?? [] };
+  return { settings, allServices, industries, portfolio, testimonials, faqs, posts: posts?.data ?? [] };
 }
 
 export default async function CmsPage({ slug }) {

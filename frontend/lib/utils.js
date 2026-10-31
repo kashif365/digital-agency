@@ -19,6 +19,16 @@ export function siteUrl(path = '') {
   return `${base}${path}`;
 }
 
+const safeId = (id, pattern) => (id && pattern.test(id) ? id : null);
+
+/** Analytics IDs end up inside inline scripts, so anything unexpected is dropped. */
+export function analyticsIds(settings) {
+  return {
+    ga4: safeId(settings.analytics?.ga4_id, /^G-[A-Z0-9]+$/),
+    gtm: safeId(settings.analytics?.gtm_id, /^GTM-[A-Z0-9]+$/),
+  };
+}
+
 /** Groups API services into mega menu columns, keeping the API's order. */
 export function groupByCategory(services) {
   const groups = new Map();

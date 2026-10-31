@@ -25,6 +25,7 @@ use App\Policies\SettingsPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Middleware\TrustProxies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
@@ -41,6 +42,11 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // Applied here, not in bootstrap/app.php, which runs before .env is loaded.
+        if ($proxies = config('agency.trusted_proxies')) {
+            TrustProxies::at($proxies === '*' ? '*' : explode(',', $proxies));
+        }
+
         Gate::before(fn (User $user) => $user->hasRole('super_admin') ? true : null);
 
         foreach ([

@@ -9,14 +9,14 @@ export default function Accordion({ items }) {
   const baseId = useId();
 
   return (
-    <div className="rounded-2xl bg-white px-5 py-2 shadow-[0_6px_28px_rgb(12_14_26/0.1)] md:px-6">
+    <div className="border-t border-line">
       {items.map((item, index) => {
         const open = openIndex === index;
         const panelId = `${baseId}-panel-${index}`;
         const buttonId = `${baseId}-button-${index}`;
 
         return (
-          <div key={item.id ?? index} className="border-b border-line last:border-b-0">
+          <div key={item.id ?? index} className="border-b border-line">
             <h3>
               <button
                 type="button"
@@ -24,10 +24,12 @@ export default function Accordion({ items }) {
                 aria-expanded={open}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(open ? -1 : index)}
-                className="flex w-full items-center justify-between gap-5 py-5 text-left font-display text-[1.125rem] font-bold leading-snug text-teal transition hover:text-brand"
+                className="flex w-full items-center justify-between gap-6 py-6 text-left font-display text-xl font-medium leading-snug text-heading transition hover:text-brand"
               >
                 {item.question}
-                <Plus className={cn('size-5 shrink-0 transition-transform duration-300', open && 'rotate-45 text-brand')} aria-hidden="true" />
+                <span className={cn('grid size-9 shrink-0 place-items-center rounded-full border border-line transition duration-300', open && 'rotate-45 border-brand bg-brand text-white')}>
+                  <Plus className="size-4" aria-hidden="true" />
+                </span>
               </button>
             </h3>
             <div
@@ -37,7 +39,7 @@ export default function Accordion({ items }) {
               className={cn('grid transition-[grid-template-rows] duration-300', open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')}
             >
               <div className={cn('overflow-hidden', !open && 'invisible')}>
-                <p className="pb-6 leading-relaxed text-muted">{item.answer}</p>
+                <p className="max-w-2xl pb-7 text-[1.0625rem] leading-relaxed text-muted">{item.answer}</p>
               </div>
             </div>
           </div>

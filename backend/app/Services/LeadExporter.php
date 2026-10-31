@@ -16,7 +16,7 @@ class LeadExporter
             $out = fopen('php://output', 'w');
             fputcsv($out, self::HEADINGS);
 
-            $query->clone()->orderByDesc('id')->lazyById(500, 'id')->each(function (Lead $lead) use ($out) {
+            $query->clone()->lazyByIdDesc(500, 'id')->each(function (Lead $lead) use ($out) {
                 fputcsv($out, array_map($this->neutralizeFormula(...), [
                     $lead->id,
                     $lead->created_at?->toDateTimeString(),

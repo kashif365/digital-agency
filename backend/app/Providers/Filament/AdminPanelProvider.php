@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::hex('#008854'),
             ])
-            ->font('Poppins')
+            ->font('DM Sans')
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups(['Leads', 'Website', 'Blog', 'Library', 'Administration'])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')

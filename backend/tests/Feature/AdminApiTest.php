@@ -150,6 +150,17 @@ class AdminApiTest extends TestCase
         $this->assertStringContainsString('Rivera Plumbing', $csv);
     }
 
+    public function test_the_export_lists_the_newest_leads_first(): void
+    {
+        $this->lead(['full_name' => 'Earliest Lead']);
+        $this->lead(['full_name' => 'Latest Lead', 'email' => 'latest@example.com']);
+        Sanctum::actingAs($this->userWithRole('sales'));
+
+        $csv = $this->get('/api/v1/admin/leads/export')->assertOk()->streamedContent();
+
+        $this->assertLessThan(strpos($csv, 'Earliest Lead'), strpos($csv, 'Latest Lead'));
+    }
+
     public function test_the_dashboard_summarizes_every_status(): void
     {
         $this->lead();

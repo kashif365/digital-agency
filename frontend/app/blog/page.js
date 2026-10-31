@@ -52,7 +52,7 @@ export default async function BlogPage({ searchParams }) {
     <>
       {hero ? <PageHero data={hero.data} page={page} /> : null}
 
-      <section className="bg-surface py-14 md:py-20">
+      <section className="py-16 md:py-20">
         <Container>
           {categories.length > 0 ? (
             <ul className="mb-10 flex flex-wrap gap-2">
@@ -74,7 +74,7 @@ export default async function BlogPage({ searchParams }) {
           ) : null}
 
           {posts.data.length > 0 ? (
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
               {posts.data.map((post) => (
                 <PostCard key={post.slug} post={post} />
               ))}

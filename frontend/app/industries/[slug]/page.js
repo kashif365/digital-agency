@@ -34,46 +34,46 @@ export default async function IndustryPage({ params }) {
   return (
     <>
       <HeroShell breadcrumbs={[{ label: 'Industries', href: '/industries' }, { label: industry.name }]}>
-        <div className="mt-7 max-w-3xl">
-          <span className="grid size-13 place-items-center rounded-2xl bg-white/10 text-brand-light ring-1 ring-white/15">
+        <div className="mt-10 max-w-4xl">
+          <span className="grid size-12 place-items-center rounded-2xl bg-white/10 text-brand-light ring-1 ring-white/15">
             <Icon name={industry.icon} className="size-6" />
           </span>
-          <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] text-white md:text-[3.25rem]">Digital Marketing for {industry.name}</h1>
-          <p className="mt-5 text-lg leading-relaxed text-white/75">{industry.short_description}</p>
-          <Button href="/free-consultation" variant="accent" arrow className="mt-8">
-            Get a Free Consultation
+          <h1 className="mt-5 text-[2.75rem] font-semibold leading-[1.05] tracking-[-0.03em] text-white md:text-6xl">Digital Marketing for {industry.name}</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75 md:text-xl">{industry.short_description}</p>
+          <Button href="/free-consultation" arrow className="mt-9">
+            Get a free consultation
           </Button>
         </div>
       </HeroShell>
 
-      <section className="py-16 md:py-20">
+      <section className="py-20 md:py-28">
         <Container className="max-w-3xl">
           <Prose html={industry.overview} />
         </Container>
       </section>
 
       {industry.challenges.length > 0 ? (
-        <section className="bg-surface py-16 md:py-20">
+        <section className="bg-surface py-20 md:py-28">
           <Container>
-            <SectionHeading eyebrow="Common Challenges" heading={`What ${industry.name} Marketers Face`} className="mb-10" />
+            <SectionHeading eyebrow="Common challenges" heading={`What ${industry.name} Marketers Face`} className="mb-12" />
             <ItemCards items={industry.challenges} />
           </Container>
         </section>
       ) : null}
 
       {industry.approach.length > 0 ? (
-        <section className="py-16 md:py-20">
+        <section className="py-20 md:py-28">
           <Container>
-            <SectionHeading eyebrow="How We Help" heading="Our Approach" className="mb-10" />
+            <SectionHeading eyebrow="How we help" heading="Our approach" className="mb-12" />
             <CheckList items={industry.approach} />
           </Container>
         </section>
       ) : null}
 
       {industry.services.length > 0 ? (
-        <section className="bg-surface py-16 md:py-20">
+        <section className="bg-surface py-20 md:py-28">
           <Container>
-            <SectionHeading eyebrow="Recommended Services" heading="Where We Would Start" className="mb-10" />
+            <SectionHeading eyebrow="Recommended services" heading="Where we would start" className="mb-12" />
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {industry.services.map((service) => (
                 <ServiceCard key={service.slug} service={service} />
@@ -84,11 +84,10 @@ export default async function IndustryPage({ params }) {
       ) : null}
 
       <CtaBanner
-        last
         data={{
-          heading: `Let's Talk About Your ${industry.name} Marketing`,
+          heading: `Let's talk about your *${industry.name}* marketing`,
           lead: 'Share your goals and we will follow up to discuss what could work for your business.',
-          cta_label: "Let's Talk About Your Project",
+          cta_label: 'Get a free consultation',
           cta_url: '/free-consultation',
         }}
       />

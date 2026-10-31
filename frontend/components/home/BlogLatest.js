@@ -10,21 +10,21 @@ export default function BlogLatest({ data, posts }) {
   }
 
   return (
-    <section className="py-14 md:py-20">
+    <section className="py-20 md:py-28">
       <Container>
-        <SectionHeading eyebrow={data.eyebrow} heading={data.heading} lead={data.lead} center className="mb-11" />
-        <Reveal className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <SectionHeading eyebrow={data.eyebrow} heading={data.heading} lead={data.lead} />
+          {data.cta_label ? (
+            <Button href={data.cta_url} variant="outline" arrow className="shrink-0 self-start lg:self-auto">
+              {data.cta_label}
+            </Button>
+          ) : null}
+        </div>
+        <Reveal className="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}
         </Reveal>
-        {data.cta_label ? (
-          <div className="mt-11 text-center">
-            <Button href={data.cta_url} variant="dark" arrow>
-              {data.cta_label}
-            </Button>
-          </div>
-        ) : null}
       </Container>
     </section>
   );

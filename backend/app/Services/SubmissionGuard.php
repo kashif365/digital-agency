@@ -49,6 +49,18 @@ class SubmissionGuard
         return Cache::add("submission:{$fingerprint}", true, config('agency.duplicate_window_seconds'));
     }
 
+    /** Stores a claimed submission, freeing the claim if it fails so a retry is not dropped as a duplicate. */
+    public function store(string $fingerprint, callable $create): mixed
+    {
+        try {
+            return $create();
+        } catch (\Throwable $exception) {
+            Cache::forget("submission:{$fingerprint}");
+
+            throw $exception;
+        }
+    }
+
     public function notificationRecipient(): ?string
     {
         return WebsiteSetting::value('notifications.lead_email') ?: config('agency.admin_notification_email');

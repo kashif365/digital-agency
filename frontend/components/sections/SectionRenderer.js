@@ -1,4 +1,5 @@
 import BlogLatest from '@/components/home/BlogLatest';
+import Comparison from '@/components/home/Comparison';
 import ContactSection from '@/components/home/ContactSection';
 import ConsultationSection from '@/components/home/ConsultationSection';
 import CtaBanner from '@/components/home/CtaBanner';
@@ -27,6 +28,7 @@ const SECTIONS = {
   services_grid: ServicesGrid,
   value_grid: ValueGrid,
   process: ProcessTimeline,
+  comparison: Comparison,
   industries_grid: IndustriesGrid,
   portfolio_grid: PortfolioGrid,
   testimonials: Testimonials,
@@ -39,9 +41,9 @@ const SECTIONS = {
 };
 
 export default function SectionRenderer({ sections, page, context }) {
-  return sections.map((section, index) => {
+  return sections.map((section) => {
     const Section = SECTIONS[section.type];
 
-    return Section ? <Section key={section.id} data={section.data} page={page} last={index === sections.length - 1} {...context} /> : null;
+    return Section ? <Section key={section.id} data={section.data} page={page} {...context} /> : null;
   });
 }

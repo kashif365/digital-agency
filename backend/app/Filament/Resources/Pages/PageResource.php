@@ -74,15 +74,15 @@ class PageResource extends Resource
                             ->helperText('Wrap words in asterisks to show them in green, like *this*.'),
                         Textarea::make('data.lead')->label('Supporting text')->rows(2)->maxLength(600),
                         Fields::rich('data.body', 'Body')
-                            ->visible($typeIn(['statement', 'rich_text', 'contact_form'])),
+                            ->visible($typeIn(['statement', 'intro', 'rich_text', 'contact_form'])),
                         Fields::media('data.media_id', 'Image')
                             ->visible($typeIn(['hero', 'page_hero', 'intro', 'split'])),
                         Grid::make(3)
-                            ->visible($typeIn(['intro']))
+                            ->visible($typeIn(['hero', 'intro']))
                             ->schema([
-                                TextInput::make('data.badge')->label('Image badge')->maxLength(40),
-                                TextInput::make('data.float_title')->label('Floating card title')->maxLength(40),
-                                TextInput::make('data.float_text')->label('Floating card text')->maxLength(40),
+                                TextInput::make('data.badge')->label('Graphic label')->maxLength(40),
+                                TextInput::make('data.float_title')->label('Graphic title')->maxLength(40),
+                                TextInput::make('data.float_text')->label('Graphic text')->maxLength(40),
                             ]),
                         Toggle::make('data.reverse')->label('Show the image on the left')
                             ->visible($typeIn(['split'])),
@@ -101,7 +101,10 @@ class PageResource extends Resource
                         Toggle::make('data.show_all')->label('Show every service, grouped by category')
                             ->visible($typeIn(['services_grid'])),
                         Fields::items('data.items', 'Items', withIcon: true, withLink: true)
-                            ->visible($typeIn(['intro', 'value_grid', 'process', 'split', 'dual_cta', 'consultation_form', 'contact_form'])),
+                            ->helperText(fn (Get $get) => $get('type') === 'comparison'
+                                ? 'Title is the usual approach. Text is how you do it instead.'
+                                : ($get('type') === 'hero' ? 'The channels shown in the hero graphic.' : null))
+                            ->visible($typeIn(['hero', 'statement', 'intro', 'value_grid', 'process', 'comparison', 'split', 'dual_cta', 'consultation_form', 'contact_form'])),
                     ]),
             ]),
             Fields::seo(),

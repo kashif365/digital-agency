@@ -23,11 +23,6 @@ return Application::configure(basePath: dirname(__DIR__))
             'brand.tokens' => ReplaceBrandTokens::class,
             'admin.active' => EnsureAdminIsActive::class,
         ]);
-
-        // Set TRUSTED_PROXIES behind a load balancer so rate limits see real client IPs.
-        if ($proxies = env('TRUSTED_PROXIES')) {
-            $middleware->trustProxies(at: $proxies === '*' ? '*' : explode(',', $proxies));
-        }
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

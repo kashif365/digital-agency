@@ -8,12 +8,12 @@ import SocialIcons from '@/components/ui/SocialIcons';
 function Detail({ icon: IconComponent, label, href, children }) {
   const content = (
     <>
-      <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-brand-tint text-brand">
+      <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-brand-tint text-brand-dark">
         <IconComponent className="size-5" aria-hidden="true" />
       </span>
       <span>
         <span className="block text-sm text-muted">{label}</span>
-        <span className="block whitespace-pre-line font-semibold text-heading">{children}</span>
+        <span className="block whitespace-pre-line font-medium text-heading">{children}</span>
       </span>
     </>
   );
@@ -32,8 +32,8 @@ export default function ContactSection({ data, settings }) {
   const hasSocial = Object.values(social).some(Boolean);
 
   return (
-    <section className="bg-surface py-14 md:py-20">
-      <Container className="grid gap-10 lg:grid-cols-[1fr_1.35fr] lg:gap-14">
+    <section className="py-20 md:py-28">
+      <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <div>
           <SectionHeading heading={data.heading} lead={data.lead} />
           <Prose html={data.body} className="mt-4 text-muted" />
@@ -61,7 +61,7 @@ export default function ContactSection({ data, settings }) {
           ) : null}
         </div>
 
-        <div className="rounded-3xl border border-line bg-white p-5 shadow-card sm:p-8">
+        <div className="rounded-[1.75rem] border border-line bg-white p-6 sm:p-9">
           <ContactForm ctaLabel={data.cta_label} />
         </div>
       </Container>

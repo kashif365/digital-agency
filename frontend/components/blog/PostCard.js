@@ -1,4 +1,3 @@
-import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from '@/components/ui/AppLink';
 import CoverArt from '@/components/ui/CoverArt';
@@ -8,11 +7,8 @@ const CATEGORY_ICONS = { seo: 'search', 'paid-advertising': 'mouse-pointer-click
 
 export default function PostCard({ post }) {
   return (
-    <Link
-      href={`/blog/${post.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_6px_28px_rgb(12_14_26/0.1)] transition duration-300 hover:-translate-y-1 hover:shadow-lift"
-    >
-      <div className="relative aspect-[3/2] overflow-hidden">
+    <Link href={`/blog/${post.slug}`} className="group flex h-full flex-col">
+      <div className="relative aspect-[3/2] overflow-hidden rounded-[var(--radius-card)]">
         {post.image ? (
           <Image
             src={post.image.url}
@@ -25,16 +21,8 @@ export default function PostCard({ post }) {
           <CoverArt seed={post.slug} icon={CATEGORY_ICONS[post.category?.slug] ?? 'file-text'} className="size-full" />
         )}
       </div>
-      <div className="flex flex-1 flex-col p-7">
-        <h3 className="flex-1 font-display text-xl font-medium leading-snug text-ink transition group-hover:text-brand">{post.title}</h3>
-        <p className="mt-5 flex items-center justify-between gap-3 border-t border-line pt-4 text-sm text-muted">
-          <span>Published: {formatDate(post.published_at)}</span>
-          <span className="inline-flex shrink-0 items-center gap-1 font-medium text-ink">
-            Read More
-            <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
-          </span>
-        </p>
-      </div>
+      <p className="mt-5 text-sm text-muted">{[post.category?.name, formatDate(post.published_at)].filter(Boolean).join(' · ')}</p>
+      <h3 className="mt-2 text-[1.375rem] font-medium leading-tight text-heading transition group-hover:text-brand">{post.title}</h3>
     </Link>
   );
 }

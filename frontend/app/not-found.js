@@ -8,7 +8,7 @@ export default function NotFound() {
     <section className="bg-surface py-24 md:py-36">
       <Container className="max-w-2xl text-center">
         <p className="font-display text-sm font-bold uppercase tracking-[0.16em] text-brand">Error 404</p>
-        <h1 className="mt-4 text-4xl font-extrabold text-heading md:text-5xl">We could not find that page</h1>
+        <h1 className="mt-4 text-5xl font-semibold text-heading md:text-6xl">We could not find that page</h1>
         <p className="mt-5 text-lg leading-relaxed text-muted">
           The page may have moved, or the address may be mistyped. These links should get you back on track.
         </p>
