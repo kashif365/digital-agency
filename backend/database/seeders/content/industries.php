@@ -1,0 +1,68 @@
+<?php
+
+return [
+    [
+        'slug' => 'healthcare-wellness', 'name' => 'Healthcare & Wellness', 'icon' => 'heart-pulse',
+        'short' => 'Marketing that helps clinics, practices, and wellness providers reach people looking for trusted care.',
+        'overview' => '<p>People choosing a healthcare or wellness provider look for reassurance as much as information. Your online presence has to feel credible, make services easy to understand, and make booking simple, while staying careful about claims and patient privacy.</p>',
+        'challenges' => [['Standing out locally', 'Patients compare several nearby providers before they make a choice.'], ['Communicating with care', 'Marketing has to stay accurate and responsible.'], ['Making contact easy', 'Complicated websites lose people who are ready to book.']],
+        'approach' => [['Local search visibility', 'We help your practice appear when people search nearby.'], ['Clear service content', 'We explain treatments and services in plain language.'], ['Simple inquiry paths', 'We make it easy to call or request an appointment.']],
+        'services' => ['local-seo', 'website-design-development', 'content-marketing'],
+    ],
+    [
+        'slug' => 'real-estate', 'name' => 'Real Estate', 'icon' => 'house',
+        'short' => 'Digital campaigns that build local authority and connect agents, brokers, and developers with active buyers and sellers.',
+        'overview' => '<p>Real estate decisions are large, local, and heavily researched. Buyers and sellers want proof that you know the area and can be trusted with a major transaction. Strong search visibility and well-targeted campaigns keep your name in front of them throughout a long decision.</p>',
+        'challenges' => [['Long decision cycles', 'Many prospects research for months before they contact anyone.'], ['Crowded local markets', 'Portals and competing agents dominate many searches.'], ['Lead quality', 'Generic campaigns attract many casual inquiries.']],
+        'approach' => [['Neighborhood content', 'We build useful local pages and guides.'], ['Targeted campaigns', 'We reach people by area, intent, and audience.'], ['Lead nurturing', 'We use email to stay in touch over time.']],
+        'services' => ['local-seo', 'pay-per-click-advertising', 'email-marketing'],
+    ],
+    [
+        'slug' => 'e-commerce', 'name' => 'E-Commerce', 'icon' => 'shopping-cart',
+        'short' => 'Search, paid media, and retention strategies that help online stores attract shoppers and keep them coming back.',
+        'overview' => '<p>Online retail is a constant competition for attention and margin. Stores need product pages that rank, ads that reach ready buyers, and a checkout that does not lose them at the last step. Retention matters too, because repeat customers are the ones who make acquisition costs worthwhile.</p>',
+        'challenges' => [['Rising acquisition costs', 'Paid channels become more competitive over time.'], ['Abandoned carts', 'Shoppers leave before completing their purchase.'], ['Product page visibility', 'Large catalogs often have thin or duplicate content.']],
+        'approach' => [['Catalog SEO', 'We improve category and product page structure.'], ['Shopping and paid campaigns', 'We focus budget on your strongest products.'], ['Lifecycle email', 'We automate cart, welcome, and repeat purchase flows.']],
+        'services' => ['pay-per-click-advertising', 'email-marketing', 'conversion-rate-optimization'],
+    ],
+    [
+        'slug' => 'automotive', 'name' => 'Automotive', 'icon' => 'car',
+        'short' => 'Marketing for dealerships, repair shops, and automotive brands that want to reach local drivers at the right moment.',
+        'overview' => '<p>Automotive customers tend to search with specific intent, whether that is a particular model or an urgent repair. Being visible at that moment, with accurate inventory and service information, often decides who gets the call.</p>',
+        'challenges' => [['High-intent competition', 'Many businesses compete for the same local searches.'], ['Keeping information current', 'Inventory and offers change frequently.'], ['Winning repeat service', 'One-time customers can easily drift away.']],
+        'approach' => [['Local and service SEO', 'We target the searches drivers actually make.'], ['Paid search', 'We capture urgent, high-intent demand.'], ['Retention campaigns', 'We remind customers when it is time to come back.']],
+        'services' => ['local-seo', 'pay-per-click-advertising', 'video-marketing'],
+    ],
+    [
+        'slug' => 'logistics-transportation', 'name' => 'Logistics & Transportation', 'icon' => 'truck',
+        'short' => 'B2B and consumer marketing that positions carriers, brokers, and logistics firms as reliable partners.',
+        'overview' => '<p>Buyers of logistics services care about reliability, coverage, and communication. Your marketing needs to prove those qualities and reach decision makers who are comparing providers, often with an urgent shipment or a contract at stake.</p>',
+        'challenges' => [['Proving reliability', 'Trust is hard to communicate through a website.'], ['Reaching decision makers', 'Procurement teams and owners rarely respond to generic ads.'], ['Explaining complex services', 'Routes, modes, and specialties can be difficult to summarize.']],
+        'approach' => [['Service and route pages', 'We build focused pages for what you actually offer.'], ['Paid search', 'We reach people when they need a provider.'], ['Credibility content', 'We show your process and your expertise.']],
+        'services' => ['search-engine-optimization', 'pay-per-click-advertising', 'website-design-development'],
+    ],
+    [
+        'slug' => 'professional-services', 'name' => 'Professional Services', 'icon' => 'briefcase',
+        'short' => 'Authority-building marketing for law firms, accountants, consultants, and other expertise-led businesses.',
+        'overview' => '<p>Professional services are sold on trust and expertise. Prospects want to know you understand their situation before they ever get in touch. Helpful content, a credible website, and consistent visibility all contribute to that first impression.</p>',
+        'challenges' => [['Differentiating expertise', 'Many firms sound the same online.'], ['Referral dependence', 'New business relies too heavily on personal networks.'], ['Long consideration', 'Prospects take their time before reaching out.']],
+        'approach' => [['Thought leadership content', 'We turn your knowledge into useful resources.'], ['Search visibility', 'We target problem-led searches.'], ['A credible website', 'We present your team and expertise clearly.']],
+        'services' => ['content-marketing', 'search-engine-optimization', 'branding-graphic-design'],
+    ],
+    [
+        'slug' => 'home-services', 'name' => 'Home Services', 'icon' => 'hammer',
+        'short' => 'Lead-focused marketing for contractors, trades, and home improvement businesses serving local communities.',
+        'overview' => '<p>Home service customers often need help quickly, and they choose from whoever appears first and looks trustworthy. Strong local visibility, a mobile-friendly site, and easy ways to call or request a quote are what make the difference.</p>',
+        'challenges' => [['Seasonal demand', 'Workload rises and falls through the year.'], ['Local competition', 'Customers compare many providers quickly.'], ['Mobile-first customers', 'Many people search from a phone when they have a problem.']],
+        'approach' => [['Local SEO', 'We improve visibility across your service area.'], ['Paid search', 'We capture urgent demand when you have capacity.'], ['Quote-focused pages', 'We make it simple to call or request a quote.']],
+        'services' => ['local-seo', 'pay-per-click-advertising', 'landing-page-design'],
+    ],
+    [
+        'slug' => 'education-training', 'name' => 'Education & Training', 'icon' => 'graduation-cap',
+        'short' => 'Enrollment-focused campaigns for schools, course providers, and training organizations.',
+        'overview' => '<p>Choosing a course or training provider is a considered decision, often involving several people and a fixed intake date. Marketing has to inform, reassure, and keep prospective learners engaged all the way through to enrollment.</p>',
+        'challenges' => [['Fixed enrollment periods', 'Campaigns must peak at the right time.'], ['Multiple decision makers', 'Students, parents, and employers may all be involved.'], ['Comparing options', 'Prospects weigh many providers side by side.']],
+        'approach' => [['Program pages', 'We clearly explain each course and its outcomes.'], ['Timed campaigns', 'We align paid media with your intake dates.'], ['Nurture sequences', 'We keep inquirers engaged until they enroll.']],
+        'services' => ['content-marketing', 'social-media-marketing', 'email-marketing'],
+    ],
+];

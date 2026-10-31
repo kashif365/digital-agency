@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens, measured from the reference site. Brand colors live here and
+ * nowhere else, so a palette change is a single edit. See docs/DESIGN-SYSTEM.md.
+ */
+@theme {
+  --color-brand: #008854;
+  --color-brand-bright: #079460;
+  --color-brand-dark: #05734a;
+  --color-brand-light: #10a36f;
+  --color-brand-tint: #e3f3ec;
+  --color-night: #060b1a;
+  --color-dark: #0b0f19;
+  --color-charcoal: #1b1a1b;
+  --color-teal: #062e39;
+  --color-heading: #0c0e1a;
+  --color-surface: #f8fafc;
+  --color-surface-alt: #f3f4f7;
+  --color-ink: #2d3340;
+  --color-muted: #5a6268;
+  --color-line: #e2e8f0;
+  --color-danger: #c62f3b;
+  --color-success: #008854;
+
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-dm-sans), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.5rem;
+
+  --shadow-card: 0 10px 30px -14px rgb(12 14 26 / 0.14);
+  --shadow-lift: 0 22px 44px -18px rgb(0 136 84 / 0.32);
+  --shadow-float: 0 24px 60px -20px rgb(6 11 26 / 0.5);
+
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes rise {
+    /* Not fully transparent: text at opacity 0 does not count as painted, which delays LCP. */
+    from {
+      opacity: 0.01;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: inherit;
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-bright);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    transition: top 0.2s;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  .topo-lines {
+    background-image:
+      radial-gradient(ellipse 60% 120% at 90% 120%, transparent 58%, rgb(255 255 255 / 0.05) 59%, transparent 60%),
+      radial-gradient(ellipse 70% 140% at 90% 120%, transparent 58%, rgb(255 255 255 / 0.05) 59%, transparent 60%),
+      radial-gradient(ellipse 80% 160% at 90% 120%, transparent 58%, rgb(255 255 255 / 0.05) 59%, transparent 60%),
+      radial-gradient(ellipse 90% 180% at 90% 120%, transparent 58%, rgb(255 255 255 / 0.05) 59%, transparent 60%);
+  }
+
+  .prose-content {
+    color: var(--color-ink);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+  }
+
+  .prose-content > * + * {
+    margin-top: 1.1em;
+  }
+
+  .prose-content h2 {
+    margin-top: 2em;
+    color: var(--color-heading);
+    font-size: 1.625rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .prose-content h3 {
+    margin-top: 1.6em;
+    color: var(--color-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .prose-content ul,
+  .prose-content ol {
+    padding-left: 1.4em;
+  }
+
+  .prose-content ul {
+    list-style: disc;
+  }
+
+  .prose-content ol {
+    list-style: decimal;
+  }
+
+  .prose-content li + li {
+    margin-top: 0.4em;
+  }
+
+  .prose-content li::marker {
+    color: var(--color-brand);
+  }
+
+  .prose-content a {
+    color: var(--color-brand);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .prose-content blockquote {
+    border-left: 3px solid var(--color-brand);
+    padding-left: 1.1em;
+    color: var(--color-muted);
+  }
+
+  .prose-content img {
+    border-radius: var(--radius-card);
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
