@@ -28,6 +28,7 @@ class SettingsSeeder extends Seeder
                 ['label' => 'Services', 'url' => '/services'],
                 ['label' => 'Industries', 'url' => '/industries'],
                 ['label' => 'Our Work', 'url' => '/portfolio'],
+                ['label' => 'Pricing', 'url' => '/pricing'],
                 ['label' => 'About', 'url' => '/about-us'],
                 ['label' => 'Blog', 'url' => '/blog'],
             ],
@@ -36,6 +37,7 @@ class SettingsSeeder extends Seeder
                 ['label' => 'Home', 'url' => '/'],
                 ['label' => 'About Us', 'url' => '/about-us'],
                 ['label' => 'Our Work', 'url' => '/portfolio'],
+                ['label' => 'Pricing', 'url' => '/pricing'],
                 ['label' => 'Contact Us', 'url' => '/contact-us'],
             ],
             'footer.resources' => [

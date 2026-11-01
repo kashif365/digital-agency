@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\IndustryController;
 use App\Http\Controllers\Api\V1\LeadController;
 use App\Http\Controllers\Api\V1\PageController;
 use App\Http\Controllers\Api\V1\PortfolioController;
+use App\Http\Controllers\Api\V1\PricingController;
 use App\Http\Controllers\Api\V1\RedirectController;
 use App\Http\Controllers\Api\V1\ServiceController;
 use App\Http\Controllers\Api\V1\SettingsController;
@@ -29,6 +30,7 @@ Route::prefix('v1')->group(function () {
         Route::get('blog/{slug}', [BlogController::class, 'show']);
         Route::get('portfolio', [PortfolioController::class, 'index']);
         Route::get('portfolio/{slug}', [PortfolioController::class, 'show']);
+        Route::get('pricing', [PricingController::class, 'index']);
         Route::get('testimonials', [TestimonialController::class, 'index']);
         Route::get('faqs', [FaqController::class, 'index']);
         Route::get('settings/public', [SettingsController::class, 'show']);

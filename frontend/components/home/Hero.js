@@ -1,9 +1,10 @@
-import Image from 'next/image';
-import Button from '@/components/ui/Button';
+import { ArrowRight } from 'lucide-react';
+import Link from '@/components/ui/AppLink';
 import Container from '@/components/ui/Container';
 import Highlight from '@/components/ui/Highlight';
 import { Eyebrow } from '@/components/ui/SectionHeading';
-import GrowthSystem from './GrowthSystem';
+import HeroShowcase from './HeroShowcase';
+import QuickStart from './QuickStart';
 
 function ServiceList({ services, hidden = false }) {
   return (
@@ -21,34 +22,43 @@ function ServiceList({ services, hidden = false }) {
 export default function Hero({ data, allServices }) {
   return (
     <section className="relative isolate overflow-hidden bg-night text-white">
-      {data.image ? <Image src={data.image.url} alt="" fill preload sizes="100vw" className="-z-30 object-cover opacity-25" /> : null}
       <div className="backdrop-glow absolute inset-0 -z-20" aria-hidden="true" />
       <div className="backdrop-grid absolute inset-0 -z-10" aria-hidden="true" />
 
-      <Container className="pb-16 pt-14 md:pt-20 lg:pb-24 lg:pt-24">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.12fr_0.88fr] lg:gap-16">
-          <div className="animate-rise">
-            {data.eyebrow ? <Eyebrow dark>{data.eyebrow}</Eyebrow> : null}
-            <h1 className="mt-6 text-[2.75rem] font-semibold leading-[1.03] tracking-[-0.03em] text-white sm:text-6xl xl:text-[4.75rem]">
-              <Highlight text={data.heading} dark />
+      <Container className="pb-16 pt-14 md:pt-16 lg:pb-20 lg:pt-20">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          <div>
+            {data.eyebrow ? (
+              <div className="animate-rise">
+                <Eyebrow dark>{data.eyebrow}</Eyebrow>
+              </div>
+            ) : null}
+            <h1 className="mt-6 text-[2.75rem] font-semibold leading-[1.03] tracking-[-0.03em] text-white sm:text-6xl xl:text-[4.5rem]">
+              <Highlight text={data.heading} dark animated />
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/75 md:text-xl">{data.lead}</p>
 
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <div className="animate-rise [animation-delay:450ms]">
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/75 md:text-xl">{data.lead}</p>
+
               {data.cta_label ? (
-                <Button href={data.cta_url} arrow>
-                  {data.cta_label}
-                </Button>
+                <div className="mt-9">
+                  <QuickStart label={data.cta_label} target={data.cta_url} />
+                </div>
               ) : null}
-              {data.secondary_cta_label ? (
-                <Button href={data.secondary_cta_url} variant="ghost">
-                  {data.secondary_cta_label}
-                </Button>
-              ) : null}
+
+              <div className="mt-5 flex flex-wrap items-center gap-x-7 gap-y-2 text-[0.9375rem]">
+                {data.note ? <p className="text-white/70">{data.note}</p> : null}
+                {data.secondary_cta_label ? (
+                  <Link href={data.secondary_cta_url} className="group inline-flex items-center gap-1.5 font-medium text-white transition hover:text-brand-light">
+                    {data.secondary_cta_label}
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                  </Link>
+                ) : null}
+              </div>
             </div>
           </div>
 
-          {data.items?.length ? <GrowthSystem label={data.badge} title={data.float_title} outcome={data.float_text} channels={data.items} /> : null}
+          {data.items?.length ? <HeroShowcase slides={data.items} /> : null}
         </div>
       </Container>
 

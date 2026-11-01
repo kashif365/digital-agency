@@ -7,12 +7,22 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-/** Adds the starter blog photos to the media library, where editors can replace them. */
+/** Adds the starter photos to the media library, where editors can replace them. */
 class MediaSeeder extends Seeder
 {
     private const FOLDER = 'starter';
 
     public const IMAGES = [
+        'hero' => ['hero.jpg', 'Team strategy session', 'A marketing team discussing a campaign in a bright office'],
+        'about' => ['about.jpg', 'Team conversation', 'Colleagues talking together in an office'],
+        'split-one' => ['split-one.jpg', 'Reviewing a plan', 'Three colleagues reviewing work on a laptop'],
+        'split-two' => ['split-two.jpg', 'Planning on paper', 'Two people planning at a desk with laptops'],
+        'work-website' => ['work-website.jpg', 'Overhead team meeting', 'A team around a table seen from above'],
+        'work-roadmap' => ['work-roadmap.jpg', 'Roadmap discussion', 'Two colleagues discussing a plan at a laptop'],
+        'work-campaign' => ['work-campaign.jpg', 'Campaign review', 'A team reviewing a campaign plan together'],
+        'work-landing' => ['work-landing.jpg', 'Landing page working session', 'A team working around a table with laptops'],
+        'work-social' => ['work-social.jpg', 'Video content tiles', 'Letter tiles spelling vlog on a wooden table'],
+        'work-brand' => ['work-brand.jpg', 'Boardroom portrait', 'A person seated at a boardroom table'],
         'blog-seo-ppc' => ['blog-seo-ppc.jpg', 'Research notes', 'People taking notes beside a laptop'],
         'blog-strategy' => ['blog-strategy.jpg', 'Strategy workshop', 'People working through sticky notes at a table'],
         'blog-website' => ['blog-website.jpg', 'Laptop on a desk', 'A laptop on a wooden desk'],

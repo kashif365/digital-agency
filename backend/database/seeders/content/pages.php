@@ -34,14 +34,15 @@ return [
                 'cta_url' => '#consultation',
                 'secondary_cta_label' => 'See how we work',
                 'secondary_cta_url' => '#process',
+                'note' => 'Free consultation. No obligation.',
                 'badge' => 'Your growth system',
                 'float_title' => 'One shared plan',
                 'float_text' => 'More qualified inquiries',
                 'items' => [
-                    ['title' => 'Search', 'text' => 'Get found', 'icon' => 'search'],
-                    ['title' => 'Paid media', 'text' => 'Reach buyers', 'icon' => 'mouse-pointer-click'],
-                    ['title' => 'Social & content', 'text' => 'Earn trust', 'icon' => 'share-2'],
-                    ['title' => 'Website & email', 'text' => 'Convert', 'icon' => 'monitor-smartphone'],
+                    ['title' => 'Search', 'text' => 'Get found when customers look for you', 'icon' => 'search', 'image_key' => 'split-one'],
+                    ['title' => 'Paid media', 'text' => 'Reach buyers who are ready to act', 'icon' => 'mouse-pointer-click', 'image_key' => 'hero'],
+                    ['title' => 'Social & content', 'text' => 'Earn trust before the first call', 'icon' => 'share-2', 'image_key' => 'about'],
+                    ['title' => 'Website & email', 'text' => 'Turn visitors into real inquiries', 'icon' => 'monitor-smartphone', 'image_key' => 'split-two'],
                 ],
             ]],
             ['statement', [
@@ -85,6 +86,12 @@ return [
                 'heading' => 'A closer look at *how we plan the work*',
                 'cta_label' => 'See all samples',
                 'cta_url' => '/portfolio',
+            ]],
+            ['pricing', [
+                'eyebrow' => 'Pricing',
+                'heading' => 'Simple plans that *grow with you*',
+                'lead' => 'Three clear starting points, each shaped around your goals.',
+                'note' => 'Prices are starting points in US dollars. We confirm scope and cost after your free consultation.',
             ]],
             ['industries_grid', [
                 'eyebrow' => 'Industries',
@@ -193,6 +200,21 @@ return [
             ]],
             ['portfolio_grid', []],
             $finalCta,
+        ],
+    ],
+    [
+        'slug' => 'pricing', 'title' => 'Pricing',
+        'meta_title' => 'Digital Marketing Pricing',
+        'meta_description' => 'Clear starting points for digital marketing with {company}, from local SEO to a fully coordinated growth plan.',
+        'sections' => [
+            ['page_hero', [
+                'eyebrow' => 'Pricing',
+                'heading' => 'Simple plans that *grow with you*',
+                'lead' => 'Three clear starting points. We shape each one around your goals, then confirm the scope with you.',
+            ]],
+            ['pricing', [
+                'note' => 'Prices are starting points in US dollars. We confirm scope and cost after your free consultation.',
+            ]],
         ],
     ],
     [

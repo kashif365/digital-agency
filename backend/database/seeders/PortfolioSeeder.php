@@ -13,9 +13,17 @@ use Illuminate\Database\Seeder;
  */
 class PortfolioSeeder extends Seeder
 {
+    private const IMAGES = [
+        'sample-local-service-website' => 'work-website',
+        'sample-search-visibility-roadmap' => 'work-roadmap',
+        'sample-multi-channel-campaign' => 'work-campaign',
+    ];
+
     public function run(): void
     {
-        foreach (require __DIR__.'/content/portfolio.php' as $index => $row) {
+        $rows = [...require __DIR__.'/content/portfolio.php', ...require __DIR__.'/content/portfolio-extra.php'];
+
+        foreach ($rows as $index => $row) {
             $project = Portfolio::firstOrCreate(['slug' => $row['slug']], [
                 'title' => $row['title'],
                 'is_illustrative' => true,
@@ -29,6 +37,12 @@ class PortfolioSeeder extends Seeder
 
             if ($project->wasRecentlyCreated) {
                 $project->services()->sync(Service::whereIn('slug', $row['services'])->pluck('id'));
+            }
+
+            $image = $row['image_key'] ?? self::IMAGES[$row['slug']] ?? null;
+
+            if ($image && ! $project->featured_media_id) {
+                $project->update(['featured_media_id' => MediaSeeder::id($image)]);
             }
         }
     }

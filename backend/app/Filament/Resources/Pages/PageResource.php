@@ -92,6 +92,8 @@ class PageResource extends Resource
                             TextInput::make('data.secondary_cta_label')->label('Second button label')->maxLength(60),
                             TextInput::make('data.secondary_cta_url')->label('Second button link')->maxLength(255),
                         ]),
+                        TextInput::make('data.note')->label('Reassurance line')->maxLength(120)
+                            ->visible($typeIn(['hero', 'pricing'])),
                         Grid::make(2)
                             ->visible($typeIn(['hero', 'consultation_form']))
                             ->schema([
@@ -100,10 +102,10 @@ class PageResource extends Resource
                             ]),
                         Toggle::make('data.show_all')->label('Show every service, grouped by category')
                             ->visible($typeIn(['services_grid'])),
-                        Fields::items('data.items', 'Items', withIcon: true, withLink: true)
+                        Fields::items('data.items', 'Items', withIcon: true, withLink: true, withMedia: true)
                             ->helperText(fn (Get $get) => $get('type') === 'comparison'
                                 ? 'Title is the usual approach. Text is how you do it instead.'
-                                : ($get('type') === 'hero' ? 'The channels shown in the hero graphic.' : null))
+                                : ($get('type') === 'hero' ? 'Each item is one hero slide: its title is the tab, its text is the caption.' : null))
                             ->visible($typeIn(['hero', 'statement', 'intro', 'value_grid', 'process', 'comparison', 'split', 'dual_cta', 'consultation_form', 'contact_form'])),
                     ]),
             ]),

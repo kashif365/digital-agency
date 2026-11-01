@@ -10,6 +10,7 @@ import IndustriesGrid from '@/components/home/IndustriesGrid';
 import IntroSection from '@/components/home/IntroSection';
 import PageHero from '@/components/home/PageHero';
 import PortfolioGrid from '@/components/home/PortfolioGrid';
+import Pricing from '@/components/home/Pricing';
 import ProcessTimeline from '@/components/home/ProcessTimeline';
 import RichText from '@/components/home/RichText';
 import ServicesGrid from '@/components/home/ServicesGrid';
@@ -31,6 +32,7 @@ const SECTIONS = {
   comparison: Comparison,
   industries_grid: IndustriesGrid,
   portfolio_grid: PortfolioGrid,
+  pricing: Pricing,
   testimonials: Testimonials,
   cta_banner: CtaBanner,
   faqs: FaqSection,

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             MediaSeeder::class,
             SettingsSeeder::class,
             ServiceSeeder::class,
+            PricingSeeder::class,
             IndustrySeeder::class,
             PageSeeder::class,
             FaqSeeder::class,

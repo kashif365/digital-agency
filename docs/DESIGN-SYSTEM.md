@@ -15,6 +15,26 @@ There are no statistics, client logos, or ratings in the design, because none ar
 - **Mark:** three rising chevrons, which read as both an evergreen and a line going up. It lives in `BrandMark` in `components/layout/Logo.js`, and in `app/icon.svg`.
 - **Voice:** plain, direct, and honest. Sentence case in headings. No jargon, and no promises about rankings or returns.
 
+## Motion
+
+Animation is there to guide the eye, and every piece respects the visitor's reduced-motion setting.
+
+- **Slider:** `Slider` (Embla) powers the services carousel. It can be dragged, loops, and pauses on hover or focus. Autoplay is off for reduced motion.
+- **Project gallery:** `ProjectGallery` shows tall panels where one opens wide on hover, tap, or Enter. It stays on the last opened panel and does not auto-play. Below 768px it becomes a numbered accordion.
+- **Hero showcase:** `HeroShowcase` is a photo slider with one timed tab per channel. The tab's progress bar drives the timing, so pausing it pauses the slide.
+- **Problem illustrations:** `ProblemArt` draws an animated SVG for each problem card, chosen by the item's icon (`layers`, `chart-column`, or `gauge`). Other icons show a large icon instead. The graphics carry no figures, so they cannot read as real results.
+- **Scroll entrances:** `Stagger` brings grid items in one after another. `Reveal` does the same for a single block. Neither runs above the fold.
+- **Headline:** hero words rise in with CSS, so the largest text never waits on JavaScript.
+- **Progress bar:** `ScrollProgress` tracks reading position along the top of the window.
+
+## Hero
+
+The hero follows patterns from established agency sites reviewed in November 2026: a short, very large headline on a plain dark background, one crisp visual beside the text, and a first step that asks for almost nothing.
+
+- **Quick start:** one website field. It scrolls to the consultation form and fills in the website, so the full form stays in one place. If the page has no form, it opens `/free-consultation`.
+- **Graphic:** `GrowthSystem`, edited through the hero section's items and graphic fields.
+- **Reassurance line:** the section's Reassurance line field. Keep it to statements that are true for every visitor.
+
 ## Tokens
 
 All tokens live in `frontend/app/globals.css` under `@theme`. Components use token names only.

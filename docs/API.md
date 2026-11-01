@@ -24,6 +24,7 @@ Base URL: `/api/v1`. All responses are JSON. Send `Accept: application/json`.
 | GET | `/blog/{slug}` | Post with related posts. Scheduled posts return `404` until their time. |
 | GET | `/portfolio` | Real work, or illustrative samples if there is none. `meta.illustrative_only` says which. |
 | GET | `/portfolio/{slug}` | `outcomes` is `null` unless verified. |
+| GET | `/pricing` | Published pricing plans, in display order. |
 | GET | `/testimonials` | Approved testimonials only. |
 | GET | `/faqs` | General FAQs. Service FAQs arrive with the service. |
 | GET | `/settings/public` | Public settings only. Private settings are never included. |

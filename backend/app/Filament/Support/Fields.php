@@ -117,7 +117,7 @@ class Fields
     }
 
     /** Title and short text pairs stored as JSON. */
-    public static function items(string $name, string $label, bool $withIcon = false, bool $withLink = false): Repeater
+    public static function items(string $name, string $label, bool $withIcon = false, bool $withLink = false, bool $withMedia = false): Repeater
     {
         return Repeater::make($name)
             ->label($label)
@@ -127,6 +127,7 @@ class Fields
                 $withIcon ? self::icon() : null,
                 $withLink ? TextInput::make('cta_label')->label('Button label')->maxLength(60) : null,
                 $withLink ? TextInput::make('cta_url')->label('Button link')->maxLength(255) : null,
+                $withMedia ? self::media('media_id', 'Slide image') : null,
             ]))
             ->itemLabel(fn (array $state) => $state['title'] ?? null)
             ->collapsed()

@@ -11,6 +11,7 @@ use App\Models\Lead;
 use App\Models\Media;
 use App\Models\Page;
 use App\Models\Portfolio;
+use App\Models\PricingPlan;
 use App\Models\Redirect;
 use App\Models\Service;
 use App\Models\ServiceCategory;
@@ -55,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
             Industry::class => ContentPolicy::class,
             Portfolio::class => ContentPolicy::class,
             Testimonial::class => ContentPolicy::class,
+            PricingPlan::class => ContentPolicy::class,
             Faq::class => ContentPolicy::class,
             Page::class => PagePolicy::class,
             BlogPost::class => BlogPolicy::class,

@@ -72,7 +72,7 @@ class AdminPanelTest extends TestCase
             '/admin/service-categories', '/admin/industries', '/admin/industries/create',
             '/admin/industries/'.Industry::first()->id.'/edit', '/admin/pages', '/admin/pages/create',
             '/admin/pages/'.Page::where('slug', 'home')->first()->id.'/edit', '/admin/portfolios', '/admin/portfolios/create',
-            '/admin/portfolios/'.Portfolio::first()->id.'/edit', '/admin/testimonials', '/admin/faqs', '/admin/blog-posts',
+            '/admin/portfolios/'.Portfolio::first()->id.'/edit', '/admin/testimonials', '/admin/pricing-plans', '/admin/faqs', '/admin/blog-posts',
             '/admin/blog-posts/create', '/admin/blog-posts/'.BlogPost::first()->id.'/edit', '/admin/blog-categories',
             '/admin/media', '/admin/redirects', '/admin/users',
         ];

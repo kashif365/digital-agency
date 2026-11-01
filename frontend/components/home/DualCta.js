@@ -1,12 +1,12 @@
 import Button from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
-import Reveal from '@/components/ui/Reveal';
+import Stagger from '@/components/ui/Stagger';
 
 export default function DualCta({ data }) {
   return (
     <section className="bg-night py-16 md:py-20">
       <Container>
-        <Reveal className="grid gap-5 lg:grid-cols-2">
+        <Stagger className="grid gap-5 lg:grid-cols-2">
           {(data.items ?? []).map((item) => (
             <div key={item.title} className="rounded-[var(--radius-card)] border border-white/10 bg-white/[0.04] p-8 md:p-12">
               {item.text ? <p className="text-sm font-semibold uppercase tracking-[0.12em] text-brand-light">{item.text}</p> : null}
@@ -18,7 +18,7 @@ export default function DualCta({ data }) {
               ) : null}
             </div>
           ))}
-        </Reveal>
+        </Stagger>
       </Container>
     </section>
   );

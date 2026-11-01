@@ -37,6 +37,7 @@ export const getIndustries = () => list('/industries');
 export const getIndustry = (slug) => single(`/industries/${encodeURIComponent(slug)}`);
 export const getPortfolio = () => request('/portfolio');
 export const getProject = (slug) => single(`/portfolio/${encodeURIComponent(slug)}`);
+export const getPricing = () => list('/pricing');
 export const getTestimonials = () => list('/testimonials');
 export const getFaqs = () => list('/faqs');
 export const getPost = (slug) => single(`/blog/${encodeURIComponent(slug)}`);

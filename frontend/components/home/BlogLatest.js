@@ -1,7 +1,7 @@
 import PostCard from '@/components/blog/PostCard';
 import Button from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
-import Reveal from '@/components/ui/Reveal';
+import Stagger from '@/components/ui/Stagger';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export default function BlogLatest({ data, posts }) {
@@ -20,11 +20,11 @@ export default function BlogLatest({ data, posts }) {
             </Button>
           ) : null}
         </div>
-        <Reveal className="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}
-        </Reveal>
+        </Stagger>
       </Container>
     </section>
   );

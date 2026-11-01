@@ -26,6 +26,7 @@ class PageSection extends Model
         'industries_grid' => 'Industries grid',
         'portfolio_grid' => 'Portfolio grid',
         'testimonials' => 'Testimonials carousel',
+        'pricing' => 'Pricing plans',
         'cta_banner' => 'Call-to-action banner',
         'faqs' => 'FAQ accordion',
         'blog_latest' => 'Latest blog articles',

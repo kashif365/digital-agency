@@ -140,7 +140,7 @@ export default function Header({ settings, categories }) {
               {settings.cta?.header_label ? (
                 <Link
                   href={settings.cta.header_url}
-                  className="hidden whitespace-nowrap rounded-full bg-brand px-5 py-2.5 text-[0.9375rem] font-semibold text-white transition hover:bg-brand-dark sm:block"
+                  className="hidden whitespace-nowrap rounded-full bg-brand px-5 py-2.5 text-[0.9375rem] font-semibold text-white transition hover:bg-brand-dark sm:block lg:hidden xl:block"
                 >
                   {settings.cta.header_label}
                 </Link>

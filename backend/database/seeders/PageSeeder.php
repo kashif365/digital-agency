@@ -24,6 +24,17 @@ class PageSeeder extends Seeder
             $page->seo()->create(['meta_title' => $row['meta_title'], 'meta_description' => $row['meta_description']]);
 
             foreach ($row['sections'] as $order => [$type, $data]) {
+                if (isset($data['items'])) {
+                    $data['items'] = array_map(function (array $item) {
+                        if ($key = $item['image_key'] ?? null) {
+                            $item['media_id'] = MediaSeeder::id($key);
+                            unset($item['image_key']);
+                        }
+
+                        return $item;
+                    }, $data['items']);
+                }
+
                 if ($key = $data['image_key'] ?? null) {
                     $data['media_id'] = MediaSeeder::id($key);
                     unset($data['image_key']);

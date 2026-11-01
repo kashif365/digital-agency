@@ -115,6 +115,8 @@ HSTS applies to subdomains, so make sure `api.example.com` and any other subdoma
 
 ### Client content
 
+- [ ] Replace the placeholder prices under **Website > Pricing** with real rates and the right currency
+
 - [ ] Review the company name, tagline, and description in **Site Settings**, and upload a logo if you have one beyond the built-in wordmark
 - [ ] Add the phone, email, address, and social profiles
 - [ ] Set the **Lead notification email**

@@ -1,41 +1,62 @@
 import { Info } from 'lucide-react';
 import ProjectCard from '@/components/portfolio/ProjectCard';
+import ProjectGallery from '@/components/portfolio/ProjectGallery';
 import Button from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
+import Stagger from '@/components/ui/Stagger';
+import { cn } from '@/lib/utils';
 
-export default function PortfolioGrid({ data, portfolio }) {
+function IllustrativeNote({ dark = false, className }) {
+  return (
+    <p className={cn('flex items-start gap-2.5 rounded-2xl px-5 py-3.5 text-sm font-medium', dark ? 'bg-white/8 text-white/85' : 'bg-brand-tint text-heading', className)}>
+      <Info className={cn('mt-0.5 size-4 shrink-0', dark ? 'text-brand-light' : 'text-brand-dark')} aria-hidden="true" />
+      These are illustrative examples of our deliverables. They are not client projects and show no real results.
+    </p>
+  );
+}
+
+export default function PortfolioGrid({ data, portfolio, page }) {
   const projects = portfolio?.data ?? [];
 
   if (projects.length === 0) {
     return null;
   }
 
+  // The dedicated portfolio page lists every project; everywhere else gets the gallery.
+  if (page?.slug === 'portfolio') {
+    return (
+      <section className="bg-surface py-20 md:py-28">
+        <Container>
+          {portfolio.meta?.illustrative_only ? <IllustrativeNote className="mb-8" /> : null}
+          <Stagger className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.slug} project={project} index={index} />
+            ))}
+          </Stagger>
+        </Container>
+      </section>
+    );
+  }
+
   return (
-    <section className="bg-surface py-20 md:py-28">
+    <section className="bg-night py-20 md:py-28">
       <Container>
-        <div className="mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-          <SectionHeading eyebrow={data.eyebrow} heading={data.heading} lead={data.lead} />
-          {data.cta_label ? (
-            <Button href={data.cta_url} variant="outline" arrow className="shrink-0 self-start lg:self-auto">
+        <SectionHeading eyebrow={data.eyebrow} heading={data.heading} lead={data.lead} dark center className="mb-10" />
+        {portfolio.meta?.illustrative_only ? <IllustrativeNote dark className="mx-auto mb-10 w-fit" /> : null}
+
+        <Reveal>
+          <ProjectGallery projects={projects} />
+        </Reveal>
+
+        {data.cta_label ? (
+          <div className="mt-10 text-center">
+            <Button href={data.cta_url} variant="ghost" arrow>
               {data.cta_label}
             </Button>
-          ) : null}
-        </div>
-
-        {portfolio.meta?.illustrative_only ? (
-          <p className="mb-8 flex items-start gap-2.5 rounded-2xl bg-brand-tint px-5 py-3.5 text-sm font-medium text-heading">
-            <Info className="mt-0.5 size-4 shrink-0 text-brand-dark" aria-hidden="true" />
-            These are illustrative examples of our deliverables. They are not client projects and show no real results.
-          </p>
+          </div>
         ) : null}
-
-        <Reveal className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.slug} project={project} index={index} />
-          ))}
-        </Reveal>
       </Container>
     </section>
   );

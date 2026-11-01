@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '@/components/ui/Button';
 import { submitForm } from '@/lib/forms';
@@ -19,6 +19,7 @@ export default function ConsultationForm({ services, budgets = [], ctaLabel = 'R
     register,
     handleSubmit,
     setError,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(consultationSchema),
@@ -34,6 +35,21 @@ export default function ConsultationForm({ services, budgets = [], ctaLabel = 'R
       company_fax: '',
     },
   });
+
+  // The hero's quick start hands over the website and moves the visitor here.
+  useEffect(() => {
+    const onStart = (event) => {
+      if (event.detail.website) {
+        setValue('website', event.detail.website);
+      }
+
+      document.getElementById(`${idPrefix}-name`)?.focus({ preventScroll: true });
+    };
+
+    window.addEventListener('consultation:start', onStart);
+
+    return () => window.removeEventListener('consultation:start', onStart);
+  }, [idPrefix, setValue]);
 
   async function onSubmit(values) {
     setStatus({ sent: false, message: null });

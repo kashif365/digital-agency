@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import JsonLd from '@/components/ui/JsonLd';
 import MotionProvider from '@/components/ui/MotionProvider';
+import ScrollProgress from '@/components/ui/ScrollProgress';
 import { getServices, getSettings } from '@/lib/api';
 import { organizationSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
@@ -35,6 +36,7 @@ export default async function RootLayout({ children }) {
         </noscript>
         <JsonLd data={organizationSchema(settings)} />
         <MotionProvider>
+          <ScrollProgress />
           <Header settings={settings} categories={groupByCategory(services)} />
           <main id="main" className="flex-1">
             {children}

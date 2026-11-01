@@ -10,7 +10,8 @@ class PageResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        $mediaIds = $this->sections->pluck('data.media_id')->filter()->unique();
+        $itemMediaIds = $this->sections->flatMap(fn ($section) => collect($section->data['items'] ?? [])->pluck('media_id'));
+        $mediaIds = $this->sections->pluck('data.media_id')->merge($itemMediaIds)->filter()->unique();
         $media = $mediaIds->isEmpty() ? collect() : Media::whereIn('id', $mediaIds)->get()->keyBy('id');
 
         return [
@@ -21,8 +22,12 @@ class PageResource extends JsonResource
                 'id' => $section->id,
                 'type' => $section->type,
                 'data' => (object) [
-                    ...collect($section->data)->except('media_id')->all(),
+                    ...collect($section->data)->except(['media_id', 'items'])->all(),
                     'image' => $media->get($section->data['media_id'] ?? null)?->toPublicArray(),
+                    ...(isset($section->data['items']) ? ['items' => array_map(fn (array $item) => [
+                        ...collect($item)->except('media_id')->all(),
+                        'image' => $media->get($item['media_id'] ?? null)?->toPublicArray(),
+                    ], $section->data['items'])] : []),
                 ],
             ])->values(),
             'seo' => [
