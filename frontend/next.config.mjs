@@ -18,6 +18,7 @@ const contentSecurityPolicy = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   poweredByHeader: false,
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -48,14 +49,13 @@ const nextConfig = {
       },
     ];
   },
-  turbopack: {
-    rules: {
-      '*.css': {
-        loaders: ['@tailwindcss/turbopack'],
-        as: '*.css',
-      },
-    },
-  },
+experimental: {
+  cpus: 1,
+  webpackBuildWorker: false,
+  webpackMemoryOptimizations: true,
+  staticGenerationMaxConcurrency: 1,
+  staticGenerationMinPagesPerWorker: 100,
+},
 };
 
 export default nextConfig;

@@ -1,0 +1,60 @@
+
+name: Build Evergrove Production
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js
+        env:
+          API_INTERNAL_URL: ${{ secrets.EVERGROVE_API_URL }}
+          NEXT_PUBLIC_API_URL: ${{ secrets.EVERGROVE_API_URL }}
+          NEXT_PUBLIC_SITE_URL: https://evergrove.digitalmarketingshub.com
+          NODE_ENV: production
+        run: npm run build -- --webpack
+
+      - name: Verify standalone server
+        run: test -f .next/standalone/server.js
+
+      - name: Package production files
+        run: |
+          mkdir -p .next/standalone/.next
+          cp -a .next/static .next/standalone/.next/
+
+          if [ -d public ]; then
+            cp -a public .next/standalone/
+          fi
+
+          tar -czf evergrove-production.tar.gz \
+            -C .next/standalone .
+
+      - name: Upload production artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: evergrove-production
+          path: frontend/evergrove-production.tar.gz
+          retention-days: 7
