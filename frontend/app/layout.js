@@ -2,6 +2,7 @@ import { Fraunces, Hanken_Grotesk } from 'next/font/google';
 import CookieConsent from '@/components/layout/CookieConsent';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
+import PageCurtain from '@/components/layout/PageCurtain';
 import JsonLd from '@/components/ui/JsonLd';
 import MotionProvider from '@/components/ui/MotionProvider';
 import { getIndustries, getServices, getSettings } from '@/lib/api';
@@ -27,11 +28,12 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" className={`${hanken.variable} ${fraunces.variable}`}>
       <body className="flex min-h-screen flex-col">
+        <PageCurtain />
         <a href="#main" className="skip-link">
           Skip to content
         </a>
         <noscript>
-          <style>{'[data-reveal]{opacity:1!important;transform:none!important}'}</style>
+          <style>{'[data-reveal]{opacity:1!important;transform:none!important}.page-curtain{display:none}'}</style>
         </noscript>
         <JsonLd data={organizationSchema(settings)} />
         <MotionProvider>

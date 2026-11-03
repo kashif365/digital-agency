@@ -187,6 +187,32 @@
     top: 1rem;
   }
 
+  /* First-load wipe (PageCurtain). Above everything, including the header and third-party widgets. */
+  .page-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    overflow: hidden;
+    /* Fallback if the script never runs: a curtain must not hide the site. JS turns this off when it takes over. */
+    animation: curtain-fallback 0.4s ease-out 6s forwards;
+  }
+
+  /* Taller than the screen, so the stretched edge stays out of view until the wipe starts. */
+  .page-curtain svg {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 110%;
+    fill: #000;
+  }
+
+  @keyframes curtain-fallback {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
   .animate-grow {
     transform-box: fill-box;
     transform-origin: bottom;
@@ -343,6 +369,11 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  /* Never painted, so there is nothing to flash before the script removes it. */
+  .page-curtain {
+    display: none;
   }
 
   *,
