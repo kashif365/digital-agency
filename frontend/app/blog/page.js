@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from '@/components/ui/AppLink';
 import { notFound } from 'next/navigation';
 import PostCard from '@/components/blog/PostCard';
@@ -48,58 +48,73 @@ export default async function BlogPage({ searchParams }) {
     notFound();
   }
 
+  // The newest article leads the first page; the rest follow in a grid.
+  const [lead, ...rest] = current === 1 ? posts.data : [null, ...posts.data];
+
   return (
     <>
       {hero ? <PageHero data={hero.data} page={page} /> : null}
 
-      <section className="py-16 md:py-20">
+      <section className="pb-24 pt-10 md:pb-32">
         <Container>
           {categories.length > 0 ? (
-            <ul className="mb-10 flex flex-wrap gap-2">
-              {[{ name: 'All', slug: undefined }, ...categories].map((category) => (
-                <li key={category.name}>
-                  <Link
-                    href={href({ page: 1, category: category.slug })}
-                    aria-current={filters.category === category.slug ? 'true' : undefined}
-                    className={cn(
-                      'block rounded-full border px-4 py-2 text-sm font-semibold transition',
-                      filters.category === category.slug ? 'border-brand bg-brand text-white' : 'border-line bg-white text-heading hover:border-brand hover:text-brand'
-                    )}
-                  >
-                    {category.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <nav aria-label="Article categories" className="mb-14 border-b border-line">
+              <ul className="-mb-px flex gap-7 overflow-x-auto [scrollbar-width:none]">
+                {[{ name: 'All', slug: undefined }, ...categories].map((category) => {
+                  const active = filters.category === category.slug;
+
+                  return (
+                    <li key={category.name} className="shrink-0">
+                      <Link
+                        href={href({ page: 1, category: category.slug })}
+                        aria-current={active ? 'page' : undefined}
+                        className={cn('block border-b-2 py-4 text-[0.9375rem] font-medium transition', active ? 'border-clay text-forest' : 'border-transparent text-muted hover:text-forest')}
+                      >
+                        {category.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
           ) : null}
 
           {posts.data.length > 0 ? (
-            <div className="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-              {posts.data.map((post) => (
-                <PostCard key={post.slug} post={post} />
-              ))}
-            </div>
+            <>
+              {lead ? <PostCard post={lead} featured /> : null}
+              {rest.length > 0 ? (
+                <div className={cn('grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3', lead && 'mt-20 border-t border-line pt-14')}>
+                  {rest.map((post) => (
+                    <PostCard key={post.slug} post={post} />
+                  ))}
+                </div>
+              ) : null}
+            </>
           ) : (
-            <p className="py-10 text-center text-lg text-muted">No articles have been published here yet.</p>
+            <p className="py-10 text-lg text-muted">No articles have been published here yet.</p>
           )}
 
           {last > 1 ? (
-            <nav aria-label="Blog pages" className="mt-12 flex items-center justify-center gap-4">
+            <nav aria-label="Blog pages" className="mt-16 flex items-center justify-between border-t border-line pt-6">
               {current > 1 ? (
-                <Link href={href({ ...filters, page: current - 1 })} className="inline-flex items-center gap-1 font-semibold text-brand">
-                  <ChevronLeft className="size-4" aria-hidden="true" />
+                <Link href={href({ ...filters, page: current - 1 })} className="inline-flex items-center gap-2 font-semibold text-forest">
+                  <ArrowLeft className="size-4 text-clay-deep" aria-hidden="true" />
                   Newer
                 </Link>
-              ) : null}
+              ) : (
+                <span />
+              )}
               <span className="text-sm text-muted">
                 Page {current} of {last}
               </span>
               {current < last ? (
-                <Link href={href({ ...filters, page: current + 1 })} className="inline-flex items-center gap-1 font-semibold text-brand">
+                <Link href={href({ ...filters, page: current + 1 })} className="inline-flex items-center gap-2 font-semibold text-forest">
                   Older
-                  <ChevronRight className="size-4" aria-hidden="true" />
+                  <ArrowRight className="size-4 text-clay-deep" aria-hidden="true" />
                 </Link>
-              ) : null}
+              ) : (
+                <span />
+              )}
             </nav>
           ) : null}
         </Container>

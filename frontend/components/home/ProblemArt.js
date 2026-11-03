@@ -1,14 +1,14 @@
 import Icon from '@/components/ui/Icon';
 
-const COPY = 'font-display fill-white text-[13px] font-medium';
-const MUTED = 'font-display fill-white/60 text-[12px]';
-const WARNING = '#f58a8a';
+const COPY = 'fill-ivory text-[13px] font-medium';
+const MUTED = 'fill-ivory/60 text-[12px]';
+const WARNING = 'var(--color-clay)';
 
 function Chip({ x, y, label, dx, dy, delay = '0s' }) {
   return (
     <g className="animate-drift" style={{ '--dx': dx, '--dy': dy, animationDelay: delay }}>
-      <rect x={x} y={y} width="86" height="34" rx="11" fill="rgb(255 255 255 / 0.08)" stroke="rgb(255 255 255 / 0.28)" />
-      <circle cx={x + 16} cy={y + 17} r="4" fill="var(--color-brand-light)" />
+      <rect x={x} y={y} width="86" height="34" rx="11" fill="rgb(245 243 236 / 0.06)" stroke="rgb(245 243 236 / 0.28)" />
+      <circle cx={x + 16} cy={y + 17} r="4" fill="var(--color-sage)" />
       <text x={x + 27} y={y + 22} className={COPY}>
         {label}
       </text>
@@ -19,7 +19,7 @@ function Chip({ x, y, label, dx, dy, delay = '0s' }) {
 function BrokenLink({ d, x, y }) {
   return (
     <>
-      <path d={d} stroke="rgb(255 255 255 / 0.3)" strokeWidth="1.5" strokeDasharray="4 7" strokeLinecap="round" className="animate-flow" />
+      <path d={d} stroke="rgb(245 243 236 / 0.3)" strokeWidth="1.5" strokeDasharray="4 7" strokeLinecap="round" className="animate-flow" />
       <path d={`M${x - 4} ${y - 4}l8 8m0-8l-8 8`} stroke={WARNING} strokeWidth="2" strokeLinecap="round" />
     </>
   );
@@ -29,7 +29,7 @@ function BrokenLink({ d, x, y }) {
 function ScatteredChannels() {
   return (
     <svg viewBox="0 0 360 200" className="size-full" fill="none">
-      <circle cx="180" cy="102" r="30" fill="rgb(255 255 255 / 0.04)" stroke="rgb(255 255 255 / 0.22)" strokeDasharray="3 5" />
+      <circle cx="180" cy="102" r="30" fill="rgb(245 243 236 / 0.04)" stroke="rgb(245 243 236 / 0.22)" strokeDasharray="3 5" />
       <text x="180" y="107" textAnchor="middle" className={MUTED}>
         Goal
       </text>
@@ -51,7 +51,7 @@ const BARS = [46, 66, 88, 110, 132];
 function FlatReport() {
   return (
     <svg viewBox="0 0 360 200" className="size-full" fill="none">
-      <circle cx="28" cy="24" r="4" fill="var(--color-brand-light)" />
+      <circle cx="28" cy="24" r="4" fill="var(--color-sage)" />
       <text x="40" y="28" className={MUTED}>
         Clicks
       </text>
@@ -68,7 +68,7 @@ function FlatReport() {
           width="36"
           height={height}
           rx="7"
-          fill="var(--color-brand-light)"
+          fill="var(--color-sage)"
           fillOpacity={0.3 + index * 0.13}
           className="animate-grow"
           style={{ animationDelay: `${index * -0.35}s` }}
@@ -77,7 +77,7 @@ function FlatReport() {
 
       <path d="M30 156 H334" stroke={WARNING} strokeWidth="2.5" strokeDasharray="8 7" strokeLinecap="round" className="animate-flow" />
       <circle cx="334" cy="156" r="5" fill={WARNING} />
-      <path d="M30 177 H334" stroke="rgb(255 255 255 / 0.18)" />
+      <path d="M30 177 H334" stroke="rgb(245 243 236 / 0.18)" />
     </svg>
   );
 }
@@ -107,40 +107,39 @@ function LeakyFunnel() {
       </text>
 
       {INFLOW.map((dot) => (
-        <circle key={dot.cx} cx={dot.cx} cy="10" r="4.5" fill="rgb(255 255 255 / 0.85)" className="animate-leak" style={{ '--dx': '0px', '--dy': '48px', animationDelay: dot.delay }} />
+        <circle key={dot.cx} cx={dot.cx} cy="10" r="4.5" fill="rgb(245 243 236 / 0.85)" className="animate-leak" style={{ '--dx': '0px', '--dy': '48px', animationDelay: dot.delay }} />
       ))}
 
-      <path d="M112 40 H248 L205 112 V150 H155 V112 Z" fill="rgb(255 255 255 / 0.05)" stroke="rgb(255 255 255 / 0.4)" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M112 40 H248 L205 112 V150 H155 V112 Z" fill="rgb(245 243 236 / 0.05)" stroke="rgb(245 243 236 / 0.4)" strokeWidth="1.5" strokeLinejoin="round" />
 
       {LEAKS.map((leak) => (
         <g key={leak.cx}>
-          <circle cx={leak.cx} cy={leak.cy} r="5" fill="var(--color-night)" stroke={WARNING} strokeWidth="1.5" />
+          <circle cx={leak.cx} cy={leak.cy} r="5" fill="var(--color-forest)" stroke={WARNING} strokeWidth="1.5" />
           <circle cx={leak.cx} cy={leak.cy} r="3.5" fill={WARNING} className="animate-leak" style={{ '--dx': leak.dx, '--dy': leak.dy, animationDelay: leak.delay }} />
         </g>
       ))}
 
-      <circle cx="180" cy="168" r="6" fill="var(--color-brand-light)" className="animate-pulse-dot" />
-      <path d="M190 176 H300" stroke="rgb(255 255 255 / 0.22)" strokeDasharray="3 5" />
+      <circle cx="180" cy="168" r="6" fill="var(--color-sage)" className="animate-pulse-dot" />
+      <path d="M190 176 H300" stroke="rgb(245 243 236 / 0.22)" strokeDasharray="3 5" />
     </svg>
   );
 }
 
 const ART = { layers: ScatteredChannels, 'chart-column': FlatReport, gauge: LeakyFunnel };
 
-/** Illustrates a problem card, chosen by the item's icon. No figures, so nothing reads as a result. */
+/** Illustrates a problem, chosen by the item's icon. No figures, so nothing reads as a result. */
 export default function ProblemArt({ icon }) {
   const Art = ART[icon];
 
   return (
-    <div className="relative h-52 overflow-hidden rounded-2xl bg-night" aria-hidden="true">
-      <div className="backdrop-grid absolute inset-0" />
+    <div className="relative h-44 rounded-[var(--radius-card)] bg-forest-soft/60 ring-1 ring-ivory/10" aria-hidden="true">
       {Art ? (
         <div className="relative size-full p-3">
           <Art />
         </div>
       ) : (
-        <div className="relative grid size-full place-items-center text-brand-light">
-          <Icon name={icon} className="size-14" strokeWidth={1.25} />
+        <div className="relative grid size-full place-items-center text-sage">
+          <Icon name={icon} className="size-12" strokeWidth={1.25} />
         </div>
       )}
     </div>

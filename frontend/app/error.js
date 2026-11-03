@@ -1,22 +1,18 @@
 'use client';
 
-import { RefreshCw } from 'lucide-react';
+import Button from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
 
 export default function Error({ reset }) {
   return (
-    <section className="bg-surface py-24 md:py-36">
-      <Container className="max-w-2xl text-center">
-        <h1 className="text-5xl font-semibold text-heading">This page could not be loaded</h1>
-        <p className="mt-5 text-lg leading-relaxed text-muted">Something went wrong on our side. Please try again in a moment.</p>
-        <button
-          type="button"
-          onClick={reset}
-          className="mt-9 inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 font-semibold text-white transition hover:bg-brand-dark"
-        >
-          <RefreshCw className="size-4" aria-hidden="true" />
-          Try Again
-        </button>
+    <section className="py-24 md:py-40">
+      <Container>
+        <p className="label text-muted">Something went wrong</p>
+        <h1 className="type-h1 mt-6 max-w-3xl text-forest">This page could not be loaded</h1>
+        <p className="type-lead mt-7 max-w-xl text-muted">The problem is on our side. Please try again in a moment.</p>
+        <Button type="button" onClick={reset} arrow className="mt-10">
+          Try again
+        </Button>
       </Container>
     </section>
   );

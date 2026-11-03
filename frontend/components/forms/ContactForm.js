@@ -10,7 +10,7 @@ import { contactSchema } from '@/lib/validation';
 import { Honeypot, TextAreaField, TextField } from './fields';
 import { FormError, FormSuccess } from './FormStatus';
 
-export default function ContactForm({ ctaLabel = 'Send Message' }) {
+export default function ContactForm({ ctaLabel = 'Send message' }) {
   const pathname = usePathname();
   const [renderedAt] = useState(() => Date.now());
   const [status, setStatus] = useState({ sent: false, message: null });
@@ -54,16 +54,16 @@ export default function ContactForm({ ctaLabel = 'Send Message' }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="relative grid gap-4 sm:grid-cols-2">
-      <TextField id="contact-name" label="Your Name" autoComplete="name" error={errors.name?.message} register={register('name')} />
-      <TextField id="contact-email" label="Email Address" type="email" autoComplete="email" error={errors.email?.message} register={register('email')} />
-      <TextField id="contact-phone" label="Phone Number" optional type="tel" autoComplete="tel" error={errors.phone?.message} register={register('phone')} />
+      <TextField id="contact-name" label="Your name" autoComplete="name" error={errors.name?.message} register={register('name')} />
+      <TextField id="contact-email" label="Email address" type="email" autoComplete="email" error={errors.email?.message} register={register('email')} />
+      <TextField id="contact-phone" label="Phone number" optional type="tel" autoComplete="tel" error={errors.phone?.message} register={register('phone')} />
       <TextField id="contact-subject" label="Subject" optional error={errors.subject?.message} register={register('subject')} />
       <TextAreaField id="contact-message" label="Message" rows={5} error={errors.message?.message} register={register('message')} className="sm:col-span-2" />
       <Honeypot register={register('company_fax')} />
       <div className="space-y-3 sm:col-span-2">
         <FormError message={status.message} />
-        <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
-          {isSubmitting ? 'Sending...' : ctaLabel}
+        <Button type="submit" disabled={isSubmitting} arrow className="w-full sm:w-auto">
+          {isSubmitting ? 'Sending…' : ctaLabel}
         </Button>
       </div>
     </form>

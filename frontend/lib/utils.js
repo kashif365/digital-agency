@@ -45,3 +45,18 @@ export function groupByCategory(services) {
 
   return [...groups.values()];
 }
+
+// Portfolio filter groups, matched against the services on each project.
+export const WORK_CATEGORIES = [
+  { slug: 'websites', label: 'Website Development', services: ['website-design-development', 'landing-page-design', 'conversion-rate-optimization'] },
+  { slug: 'branding', label: 'Branding', services: ['branding-graphic-design'] },
+  { slug: 'seo', label: 'SEO', services: ['search-engine-optimization', 'local-seo', 'technical-seo'] },
+  { slug: 'social', label: 'Social Media', services: ['social-media-marketing', 'social-media-management', 'content-marketing', 'video-marketing'] },
+  { slug: 'ads', label: 'Paid Advertising', services: ['pay-per-click-advertising'] },
+];
+
+export function workCategories(project) {
+  const slugs = project.services.map((service) => service.slug);
+
+  return WORK_CATEGORIES.filter((category) => category.services.some((slug) => slugs.includes(slug))).map((category) => category.slug);
+}

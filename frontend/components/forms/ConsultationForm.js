@@ -76,7 +76,7 @@ export default function ConsultationForm({ services, budgets = [], ctaLabel = 'R
   }
 
   if (status.sent) {
-    return <FormSuccess message={status.message} />;
+    return <FormSuccess message={status.message} title="Thank you. We have your request." />;
   }
 
   const id = (name) => `${idPrefix}-${name}`;
@@ -113,7 +113,7 @@ export default function ConsultationForm({ services, budgets = [], ctaLabel = 'R
       <div className="space-y-3 sm:col-span-2">
         <FormError message={status.message} />
         <Button type="submit" arrow disabled={isSubmitting} className="w-full">
-          {isSubmitting ? 'Sending...' : ctaLabel}
+          {isSubmitting ? 'Sending…' : ctaLabel}
         </Button>
       </div>
     </form>

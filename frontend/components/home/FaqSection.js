@@ -4,11 +4,13 @@ import SectionHeading from '@/components/ui/SectionHeading';
 
 export function FaqBlock({ eyebrow, heading, lead, items }) {
   return (
-    <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-      <div className="lg:sticky lg:top-28 lg:self-start">
-        <SectionHeading eyebrow={eyebrow} heading={heading} lead={lead} />
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+      <div className="lg:col-span-5">
+        <SectionHeading eyebrow={eyebrow} heading={heading} lead={lead} className="lg:sticky lg:top-32" />
       </div>
-      <Accordion items={items} />
+      <div className="lg:col-span-7">
+        <Accordion items={items} />
+      </div>
     </div>
   );
 }
@@ -19,7 +21,7 @@ export default function FaqSection({ data, faqs }) {
   }
 
   return (
-    <section className="bg-surface py-20 md:py-28">
+    <section className="border-t border-line py-24 md:py-36">
       <Container>
         <FaqBlock eyebrow={data.eyebrow} heading={data.heading} lead={data.lead} items={faqs} />
       </Container>

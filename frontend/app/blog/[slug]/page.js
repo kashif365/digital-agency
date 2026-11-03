@@ -41,48 +41,69 @@ export default async function PostPage({ params }) {
     notFound();
   }
 
+  const facts = [
+    ['Written by', post.author_name],
+    ['Published', formatDate(post.published_at)],
+    ['Reading time', `${post.read_minutes} minutes`],
+  ].filter(([, value]) => value);
+
   return (
     <>
       <JsonLd data={blogPostingSchema(post, settings)} />
 
       <HeroShell breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: post.title }]}>
-        <div className="mt-10 max-w-4xl">
-          {post.category ? <Eyebrow dark>{post.category.name}</Eyebrow> : null}
-          <h1 className="mt-5 text-[2.5rem] font-semibold leading-[1.08] tracking-[-0.03em] text-white md:text-[3.5rem]">{post.title}</h1>
-          <p className="mt-5 text-white/70">
-            {[post.author_name, formatDate(post.published_at), `${post.read_minutes} min read`].filter(Boolean).join(' · ')}
-          </p>
+        <div className="max-w-5xl">
+          {post.category ? <Eyebrow>{post.category.name}</Eyebrow> : null}
+          <h1 className="type-h1 mt-6 text-forest">{post.title}</h1>
+          {post.excerpt ? <p className="type-lead mt-7 max-w-2xl text-muted">{post.excerpt}</p> : null}
         </div>
       </HeroShell>
 
-      <article className="py-16 md:py-20">
-        <Container className="max-w-3xl">
+      <article className="pb-24 pt-12 md:pb-32 md:pt-16">
+        <Container>
           {post.image ? (
             <Image
               src={post.image.url}
               alt={post.image.alt}
-              width={post.image.width ?? 1200}
-              height={post.image.height ?? 700}
+              width={post.image.width ?? 1600}
+              height={post.image.height ?? 900}
               preload
-              sizes="(min-width: 800px) 768px, 100vw"
-              className="mb-10 w-full rounded-[var(--radius-card)]"
+              sizes="(min-width: 1360px) 1280px, 100vw"
+              className="mb-14 aspect-[16/8] w-full rounded-[var(--radius-card)] object-cover md:mb-20"
             />
           ) : null}
-          <Prose html={post.body} />
-          {post.author_bio ? (
-            <aside className="mt-12 rounded-[var(--radius-card)] bg-surface p-6">
-              <p className="font-display text-lg font-medium text-heading">About {post.author_name}</p>
-              <p className="mt-1.5 leading-relaxed text-muted">{post.author_bio}</p>
+
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+            <aside className="lg:col-span-3">
+              <dl className="space-y-5 border-t border-forest pt-5 lg:sticky lg:top-32">
+                {facts.map(([label, value]) => (
+                  <div key={label}>
+                    <dt className="label text-muted">{label}</dt>
+                    <dd className="mt-1.5 text-forest">{value}</dd>
+                  </div>
+                ))}
+              </dl>
             </aside>
-          ) : null}
+
+            <div className="lg:col-span-8 lg:col-start-5">
+              <Prose html={post.body} className="max-w-[68ch] [&>p:first-child]:font-display [&>p:first-child]:text-[1.375rem] [&>p:first-child]:leading-snug [&>p:first-child]:text-forest" />
+              {post.author_bio ? (
+                <aside className="mt-16 max-w-[68ch] border-t border-forest pt-6">
+                  <p className="label text-muted">About the author</p>
+                  <p className="mt-3 font-display text-xl text-forest">{post.author_name}</p>
+                  <p className="mt-2 leading-relaxed text-muted">{post.author_bio}</p>
+                </aside>
+              ) : null}
+            </div>
+          </div>
         </Container>
       </article>
 
       {post.related.length > 0 ? (
-        <section className="bg-surface py-20 md:py-28">
+        <section className="border-t border-line py-24 md:py-32">
           <Container>
-            <SectionHeading eyebrow="Keep reading" heading="Related articles" className="mb-12" />
-            <div className="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+            <SectionHeading eyebrow="Keep reading" heading="Related *articles*" className="mb-14" />
+            <div className="grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
               {post.related.map((related) => (
                 <PostCard key={related.slug} post={related} />
               ))}
@@ -93,8 +114,8 @@ export default async function PostPage({ params }) {
 
       <CtaBanner
         data={{
-          heading: 'Ready for marketing that *keeps growing*?',
-          lead: 'Tell us about your goals and we will follow up to discuss the next steps for your business.',
+          heading: 'Want a second opinion on *your marketing*?',
+          lead: 'Tell us what you are working on. We will take a look and follow up with straight answers.',
           cta_label: 'Get a free consultation',
           cta_url: '/free-consultation',
         }}

@@ -1,22 +1,21 @@
 'use client';
 
-import { Plus } from 'lucide-react';
 import { useId, useState } from 'react';
 import { cn } from '@/lib/utils';
 
-export default function Accordion({ items }) {
+export default function Accordion({ items, dark = false }) {
   const [openIndex, setOpenIndex] = useState(0);
   const baseId = useId();
 
   return (
-    <div className="border-t border-line">
+    <div className={cn('border-t', dark ? 'border-ivory/15' : 'border-line')}>
       {items.map((item, index) => {
         const open = openIndex === index;
         const panelId = `${baseId}-panel-${index}`;
         const buttonId = `${baseId}-button-${index}`;
 
         return (
-          <div key={item.id ?? index} className="border-b border-line">
+          <div key={item.id ?? index} className={cn('border-b', dark ? 'border-ivory/15' : 'border-line')}>
             <h3>
               <button
                 type="button"
@@ -24,11 +23,15 @@ export default function Accordion({ items }) {
                 aria-expanded={open}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(open ? -1 : index)}
-                className="flex w-full items-center justify-between gap-6 py-6 text-left font-display text-xl font-medium leading-snug text-heading transition hover:text-brand"
+                className={cn(
+                  'group flex w-full items-start justify-between gap-6 py-6 text-left font-display text-xl leading-snug transition md:text-[1.375rem]',
+                  dark ? 'text-ivory' : 'text-forest'
+                )}
               >
-                {item.question}
-                <span className={cn('grid size-9 shrink-0 place-items-center rounded-full border border-line transition duration-300', open && 'rotate-45 border-brand bg-brand text-white')}>
-                  <Plus className="size-4" aria-hidden="true" />
+                <span className="link-underline pb-0.5">{item.question}</span>
+                <span className="relative mt-2 size-3.5 shrink-0" aria-hidden="true">
+                  <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-current" />
+                  <span className={cn('absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-current transition-transform duration-300', open && 'scale-y-0')} />
                 </span>
               </button>
             </h3>
@@ -39,7 +42,7 @@ export default function Accordion({ items }) {
               className={cn('grid transition-[grid-template-rows] duration-300', open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')}
             >
               <div className={cn('overflow-hidden', !open && 'invisible')}>
-                <p className="max-w-2xl pb-7 text-[1.0625rem] leading-relaxed text-muted">{item.answer}</p>
+                <p className={cn('max-w-2xl pb-7 text-[1.0625rem] leading-relaxed', dark ? 'text-ivory/70' : 'text-muted')}>{item.answer}</p>
               </div>
             </div>
           </div>

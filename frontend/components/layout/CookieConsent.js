@@ -67,7 +67,7 @@ export function CookieSettings({ enabled }) {
   }
 
   return (
-    <button type="button" onClick={() => choose(null)} className="transition hover:text-white">
+    <button type="button" onClick={() => choose(null)} className="transition hover:text-ivory">
       Cookie settings
     </button>
   );
@@ -90,10 +90,10 @@ export default function CookieConsent({ ga4, gtm }) {
   }
 
   return (
-    <section aria-label="Cookie notice" className="fixed inset-x-4 bottom-4 z-50 max-w-md rounded-[var(--radius-card)] bg-white p-6 text-ink shadow-float sm:left-6 sm:right-auto">
+    <section aria-label="Cookie notice" className="fixed inset-x-4 bottom-4 z-50 max-w-md rounded-[var(--radius-card)] border border-line bg-paper p-6 text-ink shadow-[0_24px_60px_-28px_rgb(17_44_37/0.45)] sm:left-6 sm:right-auto">
       <p className="leading-relaxed">
         We use analytics cookies to understand how this site is used. They only load if you accept.{' '}
-        <Link href="/privacy-policy" className="font-semibold text-brand underline underline-offset-2">
+        <Link href="/privacy-policy" className="font-semibold text-forest underline decoration-clay underline-offset-2">
           Privacy Policy
         </Link>
       </p>

@@ -1,4 +1,6 @@
-/** Renders *starred* words in brand green. With `animated`, words rise in one after another. */
+import { cn } from '@/lib/utils';
+
+/** Renders *starred* words in the display italic. With `animated`, words rise in one after another. */
 export default function Highlight({ text, dark = false, animated = false }) {
   let wordIndex = 0;
 
@@ -12,7 +14,7 @@ export default function Highlight({ text, dark = false, animated = false }) {
         return word;
       }
 
-      const delay = wordIndex++ * 70;
+      const delay = wordIndex++ * 60;
 
       return (
         <span key={index} className="inline-block animate-rise" style={{ animationDelay: `${delay}ms` }}>
@@ -26,9 +28,9 @@ export default function Highlight({ text, dark = false, animated = false }) {
     .split('*')
     .map((part, index) =>
       index % 2 === 1 ? (
-        <span key={index} className={dark ? 'text-brand-light' : 'text-brand'}>
+        <em key={index} className={cn('accent', dark ? 'text-sage' : 'text-moss')}>
           {render(part)}
-        </span>
+        </em>
       ) : (
         <span key={index}>{render(part)}</span>
       )

@@ -1,31 +1,29 @@
 import { cn } from '@/lib/utils';
 import Highlight from './Highlight';
 
-export function Eyebrow({ dark = false, center = false, className, children }) {
+/** Small uppercase label. The clay seed dot is the one place the warm accent appears by default. */
+export function Eyebrow({ dark = false, center = false, index, className, children }) {
   return (
-    <p
-      className={cn(
-        'flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.12em]',
-        center && 'justify-center',
-        dark ? 'text-brand-light' : 'text-brand-dark',
-        className
+    <p className={cn('label flex items-center gap-3', center && 'justify-center', dark ? 'text-ivory/70' : 'text-muted', className)}>
+      {index ? (
+        <span className={cn('font-display text-sm font-normal normal-case tracking-normal', dark ? 'text-sage' : 'text-clay-deep')}>{index}</span>
+      ) : (
+        <span className="size-1.5 shrink-0 rounded-full bg-clay" aria-hidden="true" />
       )}
-    >
-      <span className="h-px w-7 bg-current" aria-hidden="true" />
       {children}
     </p>
   );
 }
 
-export function Heading({ text, dark = false, className }) {
+export function Heading({ text, as: Tag = 'h2', dark = false, className }) {
   return (
-    <h2 className={cn('text-[2.125rem] font-semibold leading-[1.08] md:text-5xl', dark ? 'text-white' : 'text-heading', className)}>
+    <Tag className={cn('type-h2', dark ? 'text-ivory' : 'text-forest', className)}>
       <Highlight text={text} dark={dark} />
-    </h2>
+    </Tag>
   );
 }
 
-export default function SectionHeading({ eyebrow, heading, lead, dark = false, center = false, className }) {
+export default function SectionHeading({ eyebrow, index, heading, lead, dark = false, center = false, className }) {
   if (!eyebrow && !heading && !lead) {
     return null;
   }
@@ -33,12 +31,12 @@ export default function SectionHeading({ eyebrow, heading, lead, dark = false, c
   return (
     <div className={cn('max-w-3xl', center && 'mx-auto text-center', className)}>
       {eyebrow ? (
-        <Eyebrow dark={dark} center={center}>
+        <Eyebrow dark={dark} center={center} index={index}>
           {eyebrow}
         </Eyebrow>
       ) : null}
-      {heading ? <Heading text={heading} dark={dark} className="mt-4" /> : null}
-      {lead ? <p className={cn('mt-5 text-lg leading-relaxed', dark ? 'text-white/70' : 'text-muted')}>{lead}</p> : null}
+      {heading ? <Heading text={heading} dark={dark} className={eyebrow ? 'mt-5' : undefined} /> : null}
+      {lead ? <p className={cn('type-lead mt-6 max-w-2xl', center && 'mx-auto', dark ? 'text-ivory/75' : 'text-muted')}>{lead}</p> : null}
     </div>
   );
 }

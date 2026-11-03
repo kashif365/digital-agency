@@ -2,15 +2,15 @@ import { cn } from '@/lib/utils';
 
 function controlClasses(error) {
   return cn(
-    'w-full rounded-xl border bg-white text-ink transition placeholder:text-muted/70 focus:border-brand focus:outline-none focus:ring-3 focus:ring-brand/15',
-    error ? 'border-danger' : 'border-line hover:border-muted/50'
+    'w-full rounded-[var(--radius-sm)] border bg-ivory/60 text-forest transition placeholder:text-muted/70 focus:border-forest focus:bg-paper focus:outline-none focus:ring-2 focus:ring-forest/10',
+    error ? 'border-danger' : 'border-line hover:border-forest/40'
   );
 }
 
 function Field({ id, label, optional, error, className, children }) {
   return (
     <div className={className}>
-      <label htmlFor={id} className="mb-1.5 block text-[0.9375rem] font-semibold text-heading">
+      <label htmlFor={id} className="mb-2 block text-sm font-semibold text-forest">
         {label}
         {optional ? <span className="font-normal text-muted"> (optional)</span> : null}
       </label>

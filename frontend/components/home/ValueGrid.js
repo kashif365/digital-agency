@@ -1,23 +1,23 @@
 import Container from '@/components/ui/Container';
-import Icon from '@/components/ui/Icon';
-import Stagger from '@/components/ui/Stagger';
 import SectionHeading from '@/components/ui/SectionHeading';
+import Stagger from '@/components/ui/Stagger';
 
+/** Principles as a numbered list of statements, set large, rather than a row of icon cards. */
 export default function ValueGrid({ data }) {
   const items = data.items ?? [];
 
   return (
-    <section className="bg-surface py-20 md:py-28">
+    <section className="bg-forest py-20 text-ivory md:py-28">
       <Container>
-        <SectionHeading eyebrow={data.eyebrow} heading={data.heading} lead={data.lead} className="mb-12" />
-        <Stagger className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {items.map((item) => (
-            <div key={item.title} className="rounded-[var(--radius-card)] border border-line bg-white p-7">
-              <span className="grid size-12 place-items-center rounded-2xl bg-brand-tint text-brand-dark">
-                <Icon name={item.icon} className="size-5" />
-              </span>
-              <h3 className="mt-6 text-xl font-medium text-heading">{item.title}</h3>
-              <p className="mt-2 leading-relaxed text-muted">{item.text}</p>
+        <SectionHeading eyebrow={data.eyebrow} heading={data.heading} lead={data.lead} dark className="mb-12 md:mb-16" />
+        <Stagger as="ol" itemAs="li" className="grid gap-x-12 md:grid-cols-2" itemClassName="border-t border-ivory/15">
+          {items.map((item, index) => (
+            <div key={item.title} className="grid grid-cols-[2.5rem_minmax(0,1fr)] py-8 md:py-10">
+              <span className="pt-1.5 font-display text-sm text-sage">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 className="type-h3 text-ivory">{item.title}</h3>
+                {item.text ? <p className="mt-3 max-w-md text-[1.0625rem] leading-relaxed text-ivory/70">{item.text}</p> : null}
+              </div>
             </div>
           ))}
         </Stagger>

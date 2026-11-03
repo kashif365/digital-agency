@@ -1,58 +1,59 @@
 import { Info } from 'lucide-react';
-import ProjectCard from '@/components/portfolio/ProjectCard';
-import ProjectGallery from '@/components/portfolio/ProjectGallery';
+import { ProjectGrid } from '@/components/portfolio/ProjectCard';
+import ProjectFilter from '@/components/portfolio/ProjectFilter';
 import Button from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
-import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
-import Stagger from '@/components/ui/Stagger';
 import { cn } from '@/lib/utils';
 
-function IllustrativeNote({ dark = false, className }) {
+export function IllustrativeNote({ className }) {
   return (
-    <p className={cn('flex items-start gap-2.5 rounded-2xl px-5 py-3.5 text-sm font-medium', dark ? 'bg-white/8 text-white/85' : 'bg-brand-tint text-heading', className)}>
-      <Info className={cn('mt-0.5 size-4 shrink-0', dark ? 'text-brand-light' : 'text-brand-dark')} aria-hidden="true" />
-      These are illustrative examples of our deliverables. They are not client projects and show no real results.
+    <p className={cn('flex max-w-2xl items-start gap-3 rounded-[var(--radius-card)] bg-stone px-5 py-4 text-[0.9375rem] leading-relaxed text-ink', className)}>
+      <Info className="mt-0.5 size-4 shrink-0 text-clay-deep" aria-hidden="true" />
+      These are concept projects for fictional businesses. They show the kind of work we produce and how we document it. They are not client projects and make no claims about results.
     </p>
   );
 }
 
 export default function PortfolioGrid({ data, portfolio, page }) {
   const projects = portfolio?.data ?? [];
+  const illustrative = portfolio?.meta?.illustrative_only;
 
   if (projects.length === 0) {
     return null;
   }
 
-  // The dedicated portfolio page lists every project; everywhere else gets the gallery.
+  // The dedicated portfolio page lists every project with filters; elsewhere shows a selection.
   if (page?.slug === 'portfolio') {
     return (
-      <section className="bg-surface py-20 md:py-28">
+      <section className="bg-white py-16 md:py-24">
         <Container>
-          {portfolio.meta?.illustrative_only ? <IllustrativeNote className="mb-8" /> : null}
-          <Stagger className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project, index) => (
-              <ProjectCard key={project.slug} project={project} index={index} />
-            ))}
-          </Stagger>
+          {illustrative ? <IllustrativeNote className="mb-12" /> : null}
+          {projects.length >= 4 ? <ProjectFilter projects={projects} /> : <ProjectGrid projects={projects} />}
         </Container>
       </section>
     );
   }
 
   return (
-    <section className="bg-night py-20 md:py-28">
+    <section className="bg-white py-20 md:py-28">
       <Container>
-        <SectionHeading eyebrow={data.eyebrow} heading={data.heading} lead={data.lead} dark center className="mb-10" />
-        {portfolio.meta?.illustrative_only ? <IllustrativeNote dark className="mx-auto mb-10 w-fit" /> : null}
+        <div className="mb-14 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
+          <SectionHeading eyebrow={data.eyebrow} heading={data.heading} lead={data.lead} className="lg:col-span-8" />
+          {data.cta_label ? (
+            <div className="lg:col-span-4 lg:text-right">
+              <Button href={data.cta_url} variant="outline" arrow>
+                {data.cta_label}
+              </Button>
+            </div>
+          ) : null}
+        </div>
 
-        <Reveal>
-          <ProjectGallery projects={projects} />
-        </Reveal>
+        <ProjectGrid projects={projects.slice(0, 6)} />
 
-        {data.cta_label ? (
-          <div className="mt-10 text-center">
-            <Button href={data.cta_url} variant="ghost" arrow>
+        {data.cta_label && projects.length > 6 ? (
+          <div className="mt-14 text-center">
+            <Button href={data.cta_url} arrow>
               {data.cta_label}
             </Button>
           </div>

@@ -1,24 +1,25 @@
-import { Mail, MapPin, Phone } from 'lucide-react';
 import Link from '@/components/ui/AppLink';
+import Button from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
+import Rings from '@/components/ui/Rings';
 import SocialIcons from '@/components/ui/SocialIcons';
 import { analyticsIds } from '@/lib/utils';
 import { CookieSettings } from './CookieConsent';
 import Logo from './Logo';
 
-function ColumnTitle({ children }) {
-  return <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-white/60">{children}</h2>;
-}
-
 function LinkColumn({ title, links }) {
+  if (links.length === 0) {
+    return null;
+  }
+
   return (
     <div>
-      <ColumnTitle>{title}</ColumnTitle>
-      <ul className="mt-5 space-y-3">
+      <h2 className="label text-ivory/50">{title}</h2>
+      <ul className="mt-5 space-y-2.5">
         {links.map((link) => (
           <li key={link.url}>
-            <Link href={link.url} className="text-white/85 transition hover:text-brand-light">
-              {link.label}
+            <Link href={link.url} className="group text-ivory/85 transition hover:text-ivory">
+              <span className="link-underline">{link.label}</span>
             </Link>
           </li>
         ))}
@@ -30,33 +31,26 @@ function LinkColumn({ title, links }) {
 function ContactColumn({ contact }) {
   return (
     <div>
-      <ColumnTitle>Contact</ColumnTitle>
-      <ul className="mt-5 space-y-3 text-white/85">
-        {contact.phone ? (
-          <li>
-            <a href={`tel:${contact.phone.replace(/[^+\d]/g, '')}`} className="inline-flex items-start gap-2.5 transition hover:text-brand-light">
-              <Phone className="mt-1 size-4 shrink-0 text-brand-light" aria-hidden="true" />
-              {contact.phone}
-            </a>
-          </li>
-        ) : null}
+      <h2 className="label text-ivory/50">Contact</h2>
+      <ul className="mt-5 space-y-2.5 text-ivory/85">
         {contact.email ? (
           <li>
-            <a href={`mailto:${contact.email}`} className="inline-flex items-start gap-2.5 break-all transition hover:text-brand-light">
-              <Mail className="mt-1 size-4 shrink-0 text-brand-light" aria-hidden="true" />
-              {contact.email}
+            <a href={`mailto:${contact.email}`} className="group break-all transition hover:text-ivory">
+              <span className="link-underline">{contact.email}</span>
             </a>
           </li>
         ) : null}
-        {contact.address ? (
-          <li className="inline-flex items-start gap-2.5">
-            <MapPin className="mt-1 size-4 shrink-0 text-brand-light" aria-hidden="true" />
-            <span className="whitespace-pre-line">{contact.address}</span>
+        {contact.phone ? (
+          <li>
+            <a href={`tel:${contact.phone.replace(/[^+\d]/g, '')}`} className="group transition hover:text-ivory">
+              <span className="link-underline">{contact.phone}</span>
+            </a>
           </li>
         ) : null}
+        {contact.address ? <li className="whitespace-pre-line text-ivory/70">{contact.address}</li> : null}
         <li>
-          <Link href="/contact-us" className="transition hover:text-brand-light">
-            Send us a message
+          <Link href="/contact-us" className="group transition hover:text-ivory">
+            <span className="link-underline">Send us a message</span>
           </Link>
         </li>
       </ul>
@@ -64,46 +58,57 @@ function ContactColumn({ contact }) {
   );
 }
 
-export default function Footer({ settings, services }) {
-  const { company = {}, contact = {}, footer = {}, social = {} } = settings;
+export default function Footer({ settings, services, industries = [] }) {
+  const { company = {}, contact = {}, footer = {}, social = {}, cta = {} } = settings;
   const { ga4, gtm } = analyticsIds(settings);
   const serviceLinks = services
     .filter((service) => service.is_featured)
-    .slice(0, 6)
+    .slice(0, 7)
     .map((service) => ({ label: service.title, url: `/services/${service.slug}` }));
+  const industryLinks = industries.filter((industry) => industry.has_page).map((industry) => ({ label: industry.name, url: `/industries/${industry.slug}` }));
 
   return (
-    <footer className="relative isolate overflow-hidden bg-night text-white">
-      <div className="backdrop-glow absolute inset-0 -z-10 opacity-60" aria-hidden="true" />
+    <footer className="relative isolate overflow-hidden bg-charcoal text-ivory">
+      <Rings seed={23} count={14} gap={24} className="absolute -bottom-72 -right-56 -z-10 size-[44rem] text-sage/[0.1]" />
 
-      <Container className="grid gap-12 py-16 sm:grid-cols-2 md:py-20 lg:grid-cols-[1.5fr_1fr_1.2fr_1fr_1fr]">
-        <div className="sm:col-span-2 lg:col-span-1">
-          <Logo company={company} dark />
-          {company.description ? <p className="mt-6 max-w-sm leading-relaxed text-white/70">{company.description}</p> : null}
-          <div className="mt-6">
-            <SocialIcons social={social} />
+      <Container className="pt-16 md:pt-24">
+        <div className="grid gap-12 pb-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] lg:gap-10">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Logo company={company} dark />
+            {company.description ? <p className="mt-6 max-w-sm leading-relaxed text-ivory/65">{company.description}</p> : null}
+            {cta.header_label ? (
+              <Button href={cta.header_url} variant="light" arrow className="mt-8 min-h-11 px-5 py-2.5 text-sm">
+                {cta.header_label}
+              </Button>
+            ) : null}
+            <div className="mt-8">
+              <SocialIcons social={social} />
+            </div>
+          </div>
+
+          <LinkColumn title="Services" links={serviceLinks} />
+          <LinkColumn title="Company" links={footer.quick_links ?? []} />
+          <LinkColumn title="Industries" links={industryLinks.slice(0, 6)} />
+          <div className="space-y-12">
+            <ContactColumn contact={contact} />
+            <LinkColumn title="Resources" links={footer.resources ?? []} />
           </div>
         </div>
-
-        <LinkColumn title="Company" links={footer.quick_links ?? []} />
-        <LinkColumn title="Services" links={serviceLinks} />
-        <LinkColumn title="Resources" links={footer.resources ?? []} />
-        <ContactColumn contact={contact} />
       </Container>
 
-      <div className="border-t border-white/10">
-        <Container className="flex flex-col gap-3 py-6 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-ivory/15">
+        <Container className="flex flex-col gap-3 py-6 text-sm text-ivory/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
             &copy; {new Date().getFullYear()} {company.name}. All rights reserved.
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             <li>
-              <Link href="/privacy-policy" className="transition hover:text-white">
+              <Link href="/privacy-policy" className="transition hover:text-ivory">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link href="/terms-and-conditions" className="transition hover:text-white">
+              <Link href="/terms-and-conditions" className="transition hover:text-ivory">
                 Terms &amp; Conditions
               </Link>
             </li>
