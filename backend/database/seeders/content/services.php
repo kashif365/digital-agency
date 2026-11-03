@@ -4,8 +4,8 @@ return [
     [
         'slug' => 'search-engine-optimization', 'category' => 'search-marketing', 'homepage' => 1, 'icon' => 'search',
         'title' => 'Search Engine Optimization',
-        'short' => 'Improve your website\'s search visibility through keyword research, technical optimization, content strategy, and ongoing SEO improvements.',
-        'hero_heading' => 'SEO That Helps the Right Customers Find You',
+        'short' => 'Research, technical fixes, and content that help your site appear when customers search for what you sell.',
+        'hero_heading' => 'SEO that helps the right customers *find you*',
         'hero_text' => 'We research how your customers search, fix what holds your site back, and build the content and authority that earn stronger visibility over time.',
         'overview' => '<p>Search is often the moment a potential customer is closest to making a decision. If your business is not visible at that moment, the inquiry goes to a competitor. Search engine optimization makes your website easier for search engines to understand and more useful to the people searching.</p><p>Our SEO work starts with evidence. We look at the terms your customers use, the pages that already rank, and the technical issues that limit your site, then turn those findings into a prioritized plan. Every recommendation connects to a commercial goal, so effort goes into the pages and topics most likely to bring in qualified visitors.</p>',
         'audience' => [
@@ -44,8 +44,8 @@ return [
     [
         'slug' => 'local-seo', 'category' => 'search-marketing', 'homepage' => 8, 'icon' => 'map-pin',
         'title' => 'Local SEO',
-        'short' => 'Improve your business\'s visibility in location-based searches through local optimization, business profile improvements, and consistent business information.',
-        'hero_heading' => 'Be the Business Nearby Customers Find First',
+        'short' => 'A complete business profile, consistent listings, and useful location pages, so nearby customers can find you and choose you.',
+        'hero_heading' => 'Be the business nearby customers *find first*',
         'hero_text' => 'We strengthen your presence in map results and location-based searches so people in your service area can find you, trust you, and get in touch.',
         'overview' => '<p>When someone searches for a service near them, they usually want to act quickly. Local search results favor businesses that are relevant, close by, and consistently represented across the web. Small gaps, such as an incomplete business profile or mismatched addresses, can keep you out of those results.</p><p>We tidy up your local footprint, improve your business profile, and create location-focused pages that reflect the real areas you serve. The aim is simple: when a nearby customer is ready to choose, your business is a clear and credible option.</p>',
         'audience' => [
@@ -85,7 +85,7 @@ return [
         'slug' => 'technical-seo', 'category' => 'search-marketing', 'icon' => 'wrench',
         'title' => 'Technical SEO',
         'short' => 'Resolve the crawl, indexing, speed, and structure issues that stop search engines from properly understanding your website.',
-        'hero_heading' => 'Fix the Foundations Your Search Visibility Depends On',
+        'hero_heading' => 'Fix the foundations your search visibility *depends on*',
         'hero_text' => 'Great content cannot perform on a site search engines struggle to crawl. We find the technical issues holding you back and work with your developers to resolve them.',
         'overview' => '<p>Technical SEO is the engineering side of search. It determines whether search engines can reach your pages, understand how they relate, and serve them quickly to users. Problems here are often invisible to the people running the site, yet they can quietly limit everything else you do.</p><p>We audit your site the way a crawler experiences it, separate serious issues from cosmetic ones, and hand your team clear, developer-ready recommendations. Where needed, we also validate fixes after release so nothing regresses unnoticed.</p>',
         'audience' => [
@@ -124,8 +124,8 @@ return [
     [
         'slug' => 'pay-per-click-advertising', 'category' => 'search-marketing', 'homepage' => 2, 'icon' => 'mouse-pointer-click',
         'title' => 'Pay-Per-Click Advertising',
-        'short' => 'Reach potential customers through targeted paid campaigns, structured keyword targeting, effective ad messaging, and ongoing performance optimization.',
-        'hero_heading' => 'Paid Campaigns Built to Earn Their Budget',
+        'short' => 'Search and display campaigns aimed at people ready to buy, with spend judged on inquiries rather than clicks.',
+        'hero_heading' => 'Paid campaigns built to *earn their budget*',
         'hero_text' => 'We plan, build, and manage paid search and display campaigns that put your offer in front of people ready to act, and keep improving them with real performance data.',
         'overview' => '<p>Paid advertising can place your business in front of potential customers almost immediately, but poorly structured accounts waste money quickly. Broad targeting, generic ads, and weak landing pages can burn through a budget with little to show for it.</p><p>We build campaigns around search intent, clear audience targeting, and conversion tracking you can trust. From there, we test ad messaging, refine bids and keywords, and remove spend that is not contributing, so your budget moves toward what is actually working.</p>',
         'audience' => [
@@ -164,8 +164,8 @@ return [
     [
         'slug' => 'social-media-marketing', 'category' => 'social-content', 'homepage' => 3, 'icon' => 'share-2',
         'title' => 'Social Media Marketing',
-        'short' => 'Strengthen your brand\'s social presence through content planning, audience engagement, and targeted promotional campaigns.',
-        'hero_heading' => 'Social Campaigns That Give People a Reason to Care',
+        'short' => 'Paid and organic social campaigns, each built around one clear offer and the audience most likely to want it.',
+        'hero_heading' => 'Social campaigns that give people *a reason to care*',
         'hero_text' => 'We help your brand show up with purpose on the platforms your audience uses, combining campaign planning, creative, and paid promotion.',
         'overview' => '<p>Social media gives your brand a direct line to customers, but attention is hard to earn. Posting without a plan rarely builds momentum, and organic reach alone is often not enough to support commercial goals.</p><p>We shape campaigns around who you want to reach and what you want them to do, then choose the platforms and formats that suit that audience. Organic content builds familiarity while targeted promotion puts your strongest messages in front of the people most likely to respond.</p>',
         'audience' => [
@@ -205,7 +205,7 @@ return [
         'slug' => 'social-media-management', 'category' => 'social-content', 'icon' => 'users',
         'title' => 'Social Media Management',
         'short' => 'Keep your profiles active and on brand with a managed content calendar, consistent publishing, and responsive community care.',
-        'hero_heading' => 'Consistent Social Profiles Without the Daily Scramble',
+        'hero_heading' => 'Consistent social profiles *without the daily scramble*',
         'hero_text' => 'We take on the day-to-day running of your social channels, from content calendars to publishing and community responses, so your brand stays present.',
         'overview' => '<p>Keeping social profiles active takes more time than most businesses expect. Between planning, designing, writing, scheduling, and replying, it is often the first task that slips when things get busy, and quiet profiles can make a business look inactive.</p><p>We act as your social media desk. We build a monthly content calendar, prepare posts for your approval, publish on schedule, and keep an eye on comments and messages following guidelines we agree with you.</p>',
         'audience' => [
@@ -244,8 +244,8 @@ return [
     [
         'slug' => 'content-marketing', 'category' => 'social-content', 'homepage' => 6, 'icon' => 'pen-line',
         'title' => 'Content Marketing',
-        'short' => 'Connect with customers through useful website content, blog articles, landing pages, and educational marketing materials.',
-        'hero_heading' => 'Content That Answers Questions and Earns Trust',
+        'short' => 'Articles, guides, and page copy that answer the questions your customers ask before they decide to buy.',
+        'hero_heading' => 'Content that answers questions and *earns trust*',
         'hero_text' => 'We plan and create useful content that supports buyers at each stage of their decision, while strengthening your search visibility and your reputation.',
         'overview' => '<p>Customers research before they buy. The businesses that answer their questions clearly become the ones they trust. Content marketing puts that knowledge to work through articles, guides, and web pages built around what your audience needs to know.</p><p>We start by mapping those questions to the stages of your sales process. Then we plan content that fills the gaps, write it in your brand voice, and make sure each piece has a job to do, whether that is attracting search traffic, explaining a service, or supporting your sales conversations.</p>',
         'audience' => [
@@ -285,7 +285,7 @@ return [
         'slug' => 'video-marketing', 'category' => 'social-content', 'icon' => 'video',
         'title' => 'Video Marketing',
         'short' => 'Plan and produce short-form and explainer videos that communicate your message clearly across your website, ads, and social channels.',
-        'hero_heading' => 'Video That Makes Your Message Easy to Understand',
+        'hero_heading' => 'Video that makes your message *easy to understand*',
         'hero_text' => 'From concept and script to editing and distribution, we create videos that explain your business and hold attention on the platforms that matter.',
         'overview' => '<p>Video can explain in moments what a page of text struggles to convey. It also shows your people, your product, and your personality in a way that static content cannot. But good video starts long before filming, with a clear idea of who it is for and what it needs to do.</p><p>We help you define that purpose, write scripts built around a single message, and shape footage into formats suited to each channel, from short vertical clips to website explainers.</p>',
         'audience' => [
@@ -324,8 +324,8 @@ return [
     [
         'slug' => 'website-design-development', 'category' => 'web-creative', 'homepage' => 4, 'icon' => 'monitor-smartphone',
         'title' => 'Website Design & Development',
-        'short' => 'Create modern, responsive, user-friendly websites that present your business professionally and encourage visitors to take action.',
-        'hero_heading' => 'Websites Designed to Turn Interest Into Inquiries',
+        'short' => 'Fast, clear websites that explain what you do and make it easy for the right visitors to get in touch.',
+        'hero_heading' => 'Websites designed to turn interest *into inquiries*',
         'hero_text' => 'We design and build fast, responsive websites that present your business well, are easy to manage, and guide visitors toward getting in touch.',
         'overview' => '<p>Your website is often the first real impression a customer has of your business, and most of your marketing eventually leads there. A site that is slow, confusing, or hard to use on a phone can undo the work of every campaign pointing to it.</p><p>We design around your customers and your goals rather than around a template. That means clear messaging, simple navigation, mobile-first layouts, and solid technical foundations for search, all on a platform your team can comfortably keep up to date.</p>',
         'audience' => [
@@ -365,7 +365,7 @@ return [
         'slug' => 'landing-page-design', 'category' => 'web-creative', 'icon' => 'layout-template',
         'title' => 'Landing Page Design',
         'short' => 'Build focused, campaign-ready landing pages that match your ads and give visitors one clear action to take.',
-        'hero_heading' => 'Focused Landing Pages That Make the Next Step Obvious',
+        'hero_heading' => 'Landing pages that make the next step *obvious*',
         'hero_text' => 'We design and write dedicated pages for your campaigns, aligning every headline and section with the ad that brought the visitor there.',
         'overview' => '<p>Sending paid traffic to a homepage asks visitors to find their own way. A landing page removes those distractions, matches the promise made in your ad, and leads the visitor to a single action, whether that is an inquiry, a booking, or a download.</p><p>We combine persuasive copy, clear visual hierarchy, and fast loading pages, then set up tracking so that different versions can be compared with real data.</p>',
         'audience' => [
@@ -404,8 +404,8 @@ return [
     [
         'slug' => 'branding-graphic-design', 'category' => 'web-creative', 'homepage' => 5, 'icon' => 'palette',
         'title' => 'Branding & Graphic Design',
-        'short' => 'Build a recognizable visual identity with consistent brand messaging, professional creative assets, and cohesive digital design.',
-        'hero_heading' => 'A Brand People Recognize and Remember',
+        'short' => 'Logos, typography, color, and guidelines that make your business look as capable as it really is, everywhere it appears.',
+        'hero_heading' => 'A brand people *recognize and remember*',
         'hero_text' => 'We shape the visual identity, messaging, and creative assets that make your business look as good as it actually is, everywhere it appears.',
         'overview' => '<p>A brand is more than a logo. It is the combined impression created by how your business looks, sounds, and presents itself. When those elements are inconsistent, customers can find it harder to remember you, and harder to trust you.</p><p>We clarify what makes your business distinctive, then express that through a practical visual system. You get a set of guidelines and assets your team can apply with confidence across your website, social channels, advertising, and sales materials.</p>',
         'audience' => [
@@ -444,8 +444,8 @@ return [
     [
         'slug' => 'email-marketing', 'category' => 'growth-analytics', 'homepage' => 7, 'icon' => 'mail',
         'title' => 'Email Marketing',
-        'short' => 'Build stronger customer relationships with segmented email campaigns, newsletters, and carefully planned automated communications.',
-        'hero_heading' => 'Email That Keeps Your Business in the Conversation',
+        'short' => 'Welcome series, newsletters, and automated follow-ups that keep past inquiries and customers coming back.',
+        'hero_heading' => 'Email that keeps your business *in the conversation*',
         'hero_text' => 'We plan campaigns, newsletters, and automated sequences that reach the right people at the right time, using audiences you own.',
         'overview' => '<p>Email reaches people who have already shown interest in your business, and it does not depend on a platform algorithm to deliver your message. Used well, it nurtures new leads, brings back past customers, and keeps your brand familiar between purchases.</p><p>We organize your audience into meaningful segments, write messages people want to open, and set up automated sequences triggered by what subscribers do, while following consent and unsubscribe requirements.</p>',
         'audience' => [
@@ -484,8 +484,8 @@ return [
     [
         'slug' => 'conversion-rate-optimization', 'category' => 'growth-analytics', 'homepage' => 9, 'icon' => 'gauge',
         'title' => 'Conversion Rate Optimization',
-        'short' => 'Evaluate website journeys, landing pages, and key conversion points to identify ways to increase inquiries and customer actions.',
-        'hero_heading' => 'Get More Value From the Traffic You Already Have',
+        'short' => 'We find where visitors drop off, then test changes to pages and forms so more of them become inquiries.',
+        'hero_heading' => 'Get more from the traffic *you already have*',
         'hero_text' => 'We study how visitors use your site, find where they get stuck, and test improvements that make it easier for them to take action.',
         'overview' => '<p>More traffic is not always the answer. If visitors arrive and leave without acting, increasing the volume only increases the waste. Conversion rate optimization focuses on removing the friction between interest and action.</p><p>We combine analytics with behavioral insight to understand where and why people drop off. Then we form clear hypotheses and test changes where your traffic allows, so that decisions rest on evidence rather than personal preference.</p>',
         'audience' => [
@@ -525,7 +525,7 @@ return [
         'slug' => 'marketing-analytics-reporting', 'category' => 'growth-analytics', 'icon' => 'chart-column',
         'title' => 'Marketing Analytics & Reporting',
         'short' => 'Set up reliable tracking and clear dashboards that show what your marketing is doing and where to focus next.',
-        'hero_heading' => 'Know What Your Marketing Is Actually Doing',
+        'hero_heading' => 'Know what your marketing is *actually doing*',
         'hero_text' => 'We set up accurate tracking and straightforward reporting so you can see which channels contribute and decide with confidence.',
         'overview' => '<p>Marketing decisions are only as good as the data behind them. Broken tags, duplicate conversions, and disconnected platforms make it difficult to know what is working, and easy to invest in the wrong things.</p><p>We audit your measurement setup, fix what is unreliable, and define the metrics tied to your business goals. You then get clear reporting that explains what changed and what to do about it, instead of a wall of numbers.</p>',
         'audience' => [

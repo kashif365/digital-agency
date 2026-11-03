@@ -8,9 +8,22 @@ use Illuminate\Database\Seeder;
 
 class SettingsSeeder extends Seeder
 {
+    /** Settings that shape the site's navigation, which a design refresh may need to replace. */
+    public const NAVIGATION_KEYS = ['navigation.header', 'footer.quick_links', 'footer.resources', 'cta.header_label', 'cta.header_url'];
+
     public function run(): void
     {
-        $defaults = [
+        $defaults = self::defaults();
+
+        foreach (SettingDefinitions::all() as $key => $isPublic) {
+            WebsiteSetting::firstOrCreate(['key' => $key], ['value' => $defaults[$key] ?? null, 'is_public' => $isPublic]);
+        }
+    }
+
+    /** @return array<string, mixed> */
+    public static function defaults(): array
+    {
+        return [
             'company.name' => config('agency.seed.company_name'),
             'company.logo_media_id' => null,
             'company.banner_media_id' => null,
@@ -25,28 +38,27 @@ class SettingsSeeder extends Seeder
             'social.x' => null,
             'social.youtube' => null,
             'navigation.header' => [
+                ['label' => 'Home', 'url' => '/'],
+                ['label' => 'About Us', 'url' => '/about-us'],
                 ['label' => 'Services', 'url' => '/services'],
-                ['label' => 'Industries', 'url' => '/industries'],
                 ['label' => 'Our Work', 'url' => '/portfolio'],
-                ['label' => 'Pricing', 'url' => '/pricing'],
-                ['label' => 'About', 'url' => '/about-us'],
-                ['label' => 'Blog', 'url' => '/blog'],
+                ['label' => 'Insights', 'url' => '/blog'],
+                ['label' => 'Contact Us', 'url' => '/contact-us'],
             ],
             'navigation.show_utility_bar' => false,
             'footer.quick_links' => [
-                ['label' => 'Home', 'url' => '/'],
                 ['label' => 'About Us', 'url' => '/about-us'],
                 ['label' => 'Our Work', 'url' => '/portfolio'],
                 ['label' => 'Pricing', 'url' => '/pricing'],
                 ['label' => 'Contact Us', 'url' => '/contact-us'],
             ],
             'footer.resources' => [
-                ['label' => 'Blog', 'url' => '/blog'],
-                ['label' => 'Industries', 'url' => '/industries'],
+                ['label' => 'Insights', 'url' => '/blog'],
                 ['label' => 'All Services', 'url' => '/services'],
-                ['label' => 'Free Consultation', 'url' => '/free-consultation'],
+                ['label' => 'All Industries', 'url' => '/industries'],
+                ['label' => 'Get a Free Quote', 'url' => '/free-consultation'],
             ],
-            'cta.header_label' => 'Free consultation',
+            'cta.header_label' => 'Get a Quote',
             'cta.header_url' => '/free-consultation',
             'seo.site_title' => '{company} | Digital Marketing Agency',
             'seo.title_template' => '%s | {company}',
@@ -58,9 +70,5 @@ class SettingsSeeder extends Seeder
             'forms.success_message' => 'Thank you. We have your request, and a member of our team will be in touch to talk through the next steps.',
             'notifications.lead_email' => null,
         ];
-
-        foreach (SettingDefinitions::all() as $key => $isPublic) {
-            WebsiteSetting::firstOrCreate(['key' => $key], ['value' => $defaults[$key] ?? null, 'is_public' => $isPublic]);
-        }
     }
 }

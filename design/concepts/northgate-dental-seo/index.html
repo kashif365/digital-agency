@@ -1,0 +1,115 @@
+<!doctype html>
+<!-- Concept SEO roadmap for a fictional business, used as an Evergrove sample. Not client work, and it contains no real data. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northgate Dental search roadmap (concept)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --forest: #112c25; --ivory: #f5f3ec; --paper: #ffffff; --line: #e3dfd3; --muted: #5e6662; --sage: #b8cc8a; --moss: #47612f; --clay: #d1784f; --stone: #ebe7dc; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: 'Hanken Grotesk', sans-serif; background: var(--stone); color: #2f3633; padding: 48px 0; line-height: 1.55; }
+  .doc { max-width: 1160px; margin: 0 auto; background: var(--paper); border-radius: 10px; overflow: hidden; box-shadow: 0 30px 60px -40px rgba(0,0,0,.4); }
+  h1, h2, h3 { font-family: Fraunces, serif; font-weight: 400; color: var(--forest); line-height: 1.1; }
+  .cover { background: var(--forest); color: var(--ivory); padding: 56px 64px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; }
+  .cover h1 { color: var(--ivory); font-size: 52px; }
+  .cover .meta { font-size: 14px; color: rgba(245,243,236,.7); display: grid; gap: 10px; align-content: end; }
+  .cover .meta b { color: var(--ivory); display: block; font-weight: 600; }
+  .label { text-transform: uppercase; letter-spacing: .16em; font-size: 11px; font-weight: 700; color: var(--clay); }
+  .cover .label { color: var(--sage); margin-bottom: 14px; }
+  section { padding: 48px 64px; border-top: 1px solid var(--line); }
+  section h2 { font-size: 32px; margin: 8px 0 20px; }
+  .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .summary div { background: var(--ivory); border-radius: 8px; padding: 20px; }
+  .summary h3 { font-size: 20px; margin-bottom: 6px; }
+  .summary p { font-size: 14px; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); padding: 10px 12px; border-bottom: 2px solid var(--forest); }
+  td { padding: 13px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:first-child { font-weight: 600; color: var(--forest); }
+  .pill { display: inline-block; border-radius: 99px; padding: 3px 10px; font-size: 12px; font-weight: 600; }
+  .high { background: #f6dccf; color: #8d3f1d; } .med { background: #eef3dd; color: var(--moss); } .low { background: var(--stone); color: var(--muted); }
+  .new { background: var(--forest); color: var(--ivory); } .ok { background: var(--ivory); color: var(--muted); border: 1px solid var(--line); }
+  .serp { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .result { border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; }
+  .result small { color: var(--muted); font-size: 13px; }
+  .result h4 { color: #1a4fb4; font-weight: 500; font-size: 19px; margin: 4px 0; font-family: Arial, sans-serif; }
+  .result p { font-size: 14px; color: #4d5156; font-family: Arial, sans-serif; }
+  .result.after { border: 2px solid var(--moss); }
+  .note { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .gantt { display: grid; grid-template-columns: 200px repeat(12, 1fr); font-size: 13px; row-gap: 10px; align-items: center; }
+  .gantt .m { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  .gantt .task { font-weight: 600; color: var(--forest); }
+  .bar { height: 14px; border-radius: 4px; }
+  .b1 { background: var(--forest); } .b2 { background: var(--moss); } .b3 { background: var(--sage); }
+  footer { padding: 24px 64px; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; background: var(--ivory); }
+  @media (max-width: 700px) {
+    body { padding: 0; }
+    .doc { border-radius: 0; }
+    .cover, section, footer { padding: 28px 20px; }
+    .cover { grid-template-columns: 1fr; gap: 20px; }
+    .cover h1 { font-size: 34px; }
+    .summary, .serp { grid-template-columns: 1fr; }
+    .hide-m { display: none; }
+    .gantt { grid-template-columns: 110px repeat(12, 1fr); }
+    footer { display: block; }
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="cover">
+    <div><p class="label">Search visibility roadmap</p><h1>Getting Northgate Dental in front of nearby patients</h1></div>
+    <div class="meta"><div><b>Prepared for</b>Northgate Dental (fictional practice)</div><div><b>Scope</b>Technical health, local search, service pages, content</div><div><b>Format</b>Concept sample by Evergrove</div></div>
+  </div>
+
+  <section>
+    <p class="label">Summary</p>
+    <h2>Three things to fix first</h2>
+    <div class="summary">
+      <div><h3>Treatment pages are missing</h3><p>Implants, Invisalign and emergency care share one general page, so none of them can rank on its own.</p></div>
+      <div><h3>The business profile is incomplete</h3><p>Opening hours, services and photos are missing, which weakens map results for nearby searches.</p></div>
+      <div><h3>Mobile pages load slowly</h3><p>Large images on the homepage delay the booking button on phones, where most local searches start.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Keyword map</p>
+    <h2>What patients search for, and the page that should answer</h2>
+    <table>
+      <tr><th>Search theme</th><th>What the searcher wants</th><th class="hide-m">Page that should rank</th><th>Status</th><th>Priority</th></tr>
+      <tr><td>Emergency dentist nearby</td><td>Same-day appointment</td><td class="hide-m">/emergency-dentist</td><td><span class="pill new">New page</span></td><td><span class="pill high">High</span></td></tr>
+      <tr><td>Dental implants cost</td><td>Price range and finance</td><td class="hide-m">/dental-implants</td><td><span class="pill new">New page</span></td><td><span class="pill high">High</span></td></tr>
+      <tr><td>Invisalign provider</td><td>Find a certified clinic</td><td class="hide-m">/invisalign</td><td><span class="pill new">New page</span></td><td><span class="pill med">Medium</span></td></tr>
+      <tr><td>Family dentist accepting patients</td><td>Register a family</td><td class="hide-m">/new-patients</td><td><span class="pill ok">Improve</span></td><td><span class="pill med">Medium</span></td></tr>
+      <tr><td>Teeth whitening</td><td>Compare options</td><td class="hide-m">/whitening</td><td><span class="pill ok">Improve</span></td><td><span class="pill low">Low</span></td></tr>
+    </table>
+  </section>
+
+  <section>
+    <p class="label">Search snippet</p>
+    <h2>How the homepage appears today, and what we would change</h2>
+    <div class="serp">
+      <div><div class="result"><small>northgatedental.example › home</small><h4>Home | Northgate Dental</h4><p>Welcome to our website. We are a dental practice offering a range of services. Contact us for more information.</p></div><p class="note">Today: generic title, no location, no reason to click.</p></div>
+      <div><div class="result after"><small>northgatedental.example</small><h4>Dentist in Northfield | Emergency Appointments | Northgate Dental</h4><p>Family and cosmetic dentistry in Northfield. Same-day emergency appointments, evening clinics, and new NHS and private patients welcome.</p></div><p class="note">Proposed: location, services and a clear reason to choose the practice.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Roadmap</p>
+    <h2>A phased plan over twelve weeks</h2>
+    <div class="gantt">
+      <span></span><span class="m">W1</span><span class="m">W2</span><span class="m">W3</span><span class="m">W4</span><span class="m">W5</span><span class="m">W6</span><span class="m">W7</span><span class="m">W8</span><span class="m">W9</span><span class="m">W10</span><span class="m">W11</span><span class="m">W12</span>
+      <span class="task">Technical fixes</span><span class="bar b1" style="grid-column: span 3"></span><span style="grid-column: span 9"></span>
+      <span class="task">Business profile</span><span></span><span class="bar b1" style="grid-column: span 2"></span><span style="grid-column: span 9"></span>
+      <span class="task">Treatment pages</span><span style="grid-column: span 2"></span><span class="bar b2" style="grid-column: span 5"></span><span style="grid-column: span 5"></span>
+      <span class="task">Local citations</span><span style="grid-column: span 4"></span><span class="bar b2" style="grid-column: span 3"></span><span style="grid-column: span 5"></span>
+      <span class="task">Patient guides</span><span style="grid-column: span 6"></span><span class="bar b3" style="grid-column: span 6"></span>
+      <span class="task">Review and report</span><span style="grid-column: span 3"></span><span class="bar b3" style="grid-column: span 1"></span><span style="grid-column: span 3"></span><span class="bar b3" style="grid-column: span 1"></span><span style="grid-column: span 3"></span><span class="bar b3" style="grid-column: span 1"></span>
+    </div>
+  </section>
+  <footer><span>Northgate Dental search roadmap</span><span>Concept sample. Northgate Dental is a fictional practice and this document contains no real data.</span></footer>
+</div>
+</body>
+</html>

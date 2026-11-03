@@ -61,7 +61,8 @@ class ServiceResource extends Resource
                     TextInput::make('featured_order')->label('Homepage position')->numeric()->default(0),
                 ]),
                 Tab::make('Page content')->schema([
-                    TextInput::make('hero_heading')->maxLength(255),
+                    TextInput::make('hero_heading')->maxLength(255)
+                        ->helperText('Wrap words in asterisks to set them in italic, like *this*.'),
                     Textarea::make('hero_text')->rows(2),
                     Fields::rich('overview', 'Overview and introduction'),
                     Fields::items('audience', 'Who the service helps'),

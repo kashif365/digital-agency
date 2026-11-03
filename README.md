@@ -67,7 +67,7 @@ npm run dev
 - **`{company}` is a token.** Write it anywhere in content. The API replaces it with the name in Site Settings, so renaming the business is one change. It is seeded from `SEED_COMPANY_NAME`.
 - **Edits appear within seconds.** Saving a record queues a refresh of the frontend cache. If that fails, pages refresh on their own within five minutes.
 - **Blank means hidden.** Contact details, social icons, the utility bar, testimonials, and verified outcomes only render once real data exists. Empty sections never show placeholders.
-- **Seeders never overwrite.** They only add missing records, so copy changed in `database/seeders/content/` reaches a database that is already seeded only through the admin, or through `php artisan migrate:fresh --seed`, which erases all data.
+- **Seeders never overwrite.** They only add missing records, so copy changed in `database/seeders/content/` reaches a database that is already seeded only through the admin, or through `php artisan content:refresh`, which replaces the built-in pages after asking for confirmation. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md#applying-new-starter-copy-to-an-existing-site).
 
 ### Guardrails against unverified claims
 
@@ -107,6 +107,7 @@ frontend/   Next.js site
   app/                   Routes
   components/sections/   Section type to component mapping
   components/home/       Section components
+  components/ui/         Design system primitives, including the growth rings and concept artwork
   lib/                   API client, SEO, structured data, validation
 docs/       API, deployment, design system
 .github/    CI: backend tests and frontend lint

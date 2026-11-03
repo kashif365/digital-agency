@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- Concept brand identity for a fictional business, used as an Evergrove sample. Not client work. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morrow Coffee Roasters brand (concept)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root { --night: #1b2a2f; --cream: #f3ead8; --terra: #c4552d; --sky: #9cc3c9; --ink: #1b2a2f; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: 'Bricolage Grotesque', sans-serif; background: #ebe7dc; padding: 48px; color: var(--ink); }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .board { max-width: 1340px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+  .p { border-radius: 14px; overflow: hidden; position: relative; }
+  .label { position: absolute; top: 16px; left: 18px; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; font-weight: 600; opacity: .7; }
+  .logo-main { grid-column: span 7; background: var(--night); color: var(--cream); height: 420px; display: grid; place-items: center; }
+  .mark { display: flex; align-items: center; gap: 22px; }
+  .sun { width: 96px; height: 96px; border-radius: 50%; background: var(--terra); position: relative; overflow: hidden; }
+  .sun::after { content: ''; position: absolute; left: -10%; right: -10%; bottom: 0; height: 46%; background: var(--night); }
+  .sun::before { content: ''; position: absolute; left: 0; right: 0; bottom: 46%; height: 6px; background: var(--cream); z-index: 1; }
+  .word { font-weight: 800; font-size: 76px; letter-spacing: -.045em; line-height: .9; }
+  .word small { display: block; font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-size: 30px; letter-spacing: 0; color: var(--sky); margin-top: 6px; }
+  .photo { grid-column: span 5; height: 420px; }
+  .colors { grid-column: span 5; display: grid; grid-template-columns: repeat(4, 1fr); height: 300px; gap: 0; }
+  .colors div { padding: 18px; display: flex; flex-direction: column; justify-content: end; font-size: 12px; line-height: 1.5; }
+  .colors b { font-size: 15px; display: block; }
+  .type { grid-column: span 7; background: var(--cream); height: 300px; padding: 44px 40px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; }
+  .type .aa { font-weight: 800; font-size: 120px; letter-spacing: -.05em; line-height: .8; }
+  .type .aa.serif { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; letter-spacing: 0; }
+  .type p { font-size: 13px; margin-top: 14px; color: #4b5a5e; }
+  .bag { grid-column: span 4; background: var(--sky); height: 380px; display: grid; place-items: center; }
+  .pack { width: 190px; height: 270px; background: var(--terra); border-radius: 10px 10px 14px 14px; position: relative; box-shadow: 0 24px 40px -20px rgba(0,0,0,.45); color: var(--cream); padding: 26px 18px; display: flex; flex-direction: column; justify-content: space-between; }
+  .pack::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 24px; background: rgba(0,0,0,.12); border-radius: 10px 10px 0 0; }
+  .pack .s { width: 56px; height: 56px; border-radius: 50%; background: var(--cream); overflow: hidden; position: relative; margin-top: 12px; }
+  .pack .s::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 46%; background: var(--terra); }
+  .pack h3 { font-weight: 800; font-size: 26px; letter-spacing: -.03em; line-height: .95; }
+  .pack h3 small { display: block; font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-size: 17px; margin-top: 6px; letter-spacing: 0; }
+  .pack p { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; }
+  .cards { grid-column: span 4; background: #d9d1bf; height: 380px; display: grid; place-items: center; }
+  .bc { width: 260px; height: 150px; border-radius: 6px; box-shadow: 0 18px 30px -18px rgba(0,0,0,.45); padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+  .stack { display: grid; } .stack > * { grid-area: 1 / 1; }
+  .bc.front { background: var(--night); color: var(--cream); transform: rotate(-6deg) translate(-28px, 44px); }
+  .bc.back { background: var(--cream); transform: rotate(5deg) translate(28px, -40px); font-size: 12px; line-height: 1.6; }
+  .bc .w { font-weight: 800; font-size: 26px; letter-spacing: -.04em; }
+  .bc .w small { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-size: 15px; color: var(--sky); letter-spacing: 0; margin-left: 6px; }
+  .cup { grid-column: span 4; height: 380px; }
+  .cup .tag { position: absolute; right: 18px; bottom: 18px; background: var(--cream); border-radius: 99px; padding: 8px 14px; font-weight: 600; font-size: 13px; }
+  @media (max-width: 700px) { body { padding: 16px; } .board > * { grid-column: span 12 !important; } .type { grid-template-columns: 1fr; height: auto; } .word { font-size: 52px; } }
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="p logo-main"><span class="label">Primary logo</span><div class="mark"><div class="sun"></div><div class="word">Morrow<small>coffee roasters</small></div></div></div>
+  <div class="p photo"><img src="img/coffee-1.jpg" alt=""><span class="label" style="color:#fff">Photography direction</span></div>
+  <div class="p colors">
+    <div style="background:var(--night);color:var(--cream)"><b>Night</b>#1B2A2F</div>
+    <div style="background:var(--terra);color:var(--cream)"><b>Terracotta</b>#C4552D</div>
+    <div style="background:var(--sky)"><b>Dawn</b>#9CC3C9</div>
+    <div style="background:var(--cream)"><b>Oat</b>#F3EAD8</div>
+  </div>
+  <div class="p type"><span class="label">Typography</span>
+    <div><div class="aa">Aa</div><p>Bricolage Grotesque, for headlines and labels</p></div>
+    <div><div class="aa serif">Aa</div><p>Instrument Serif Italic, for origins and tasting notes</p></div>
+  </div>
+  <div class="p bag"><span class="label">Packaging</span><div class="pack"><div class="s"></div><h3>Early Light<small>Ethiopia, washed</small></h3><p>Notes of apricot, black tea and honey · 250g</p></div></div>
+  <div class="p cards"><span class="label">Stationery</span><div class="stack"><div class="bc back">Morrow Coffee Roasters<br>Unit 4, Canal Yard<br>hello@morrow.example</div><div class="bc front"><div class="w">Morrow<small>roasters</small></div><div style="font-size:11px;opacity:.7">Roasted at first light</div></div></div></div>
+  <div class="p cup"><img src="img/coffee-2.jpg" alt=""><span class="tag">Brand in use</span></div>
+</div>
+</body>
+</html>

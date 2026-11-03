@@ -1,0 +1,140 @@
+<!doctype html>
+<!-- Concept website for a fictional business, used as an Evergrove sample. Not client work. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hartwell Kitchens (concept)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1f2420; --muted: #646b66; --oak: #b5835a; --paper: #faf8f4; --sand: #efe9e0; --navy: #1e2b33; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: Manrope, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.08; }
+  .top { background: var(--navy); color: #dfe4e2; font-size: 13px; }
+  .top .wrap { display: flex; justify-content: space-between; padding-top: 9px; padding-bottom: 9px; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 84px; }
+  .logo { font-family: 'DM Serif Display'; font-size: 26px; display: flex; gap: 10px; align-items: center; }
+  .logo span { width: 34px; height: 34px; border-radius: 50%; background: var(--oak); display: grid; place-items: center; color: #fff; font-size: 18px; }
+  nav { display: flex; gap: 30px; font-weight: 500; font-size: 15px; }
+  .btn { display: inline-block; background: var(--navy); color: #fff; padding: 14px 24px; border-radius: 6px; font-weight: 600; font-size: 15px; text-decoration: none; }
+  .btn.oak { background: var(--oak); }
+  .btn.line { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .hero { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; padding-top: 48px; padding-bottom: 72px; }
+  .hero h1 { font-size: 64px; }
+  .hero p { font-size: 18px; color: var(--muted); margin: 22px 0 30px; max-width: 470px; }
+  .hero .media { height: 540px; border-radius: 14px; overflow: hidden; position: relative; }
+  .tag { position: absolute; left: 22px; bottom: 22px; background: #fff; border-radius: 10px; padding: 14px 18px; font-size: 14px; box-shadow: 0 12px 30px -12px rgba(0,0,0,.35); }
+  .tag b { display: block; font-size: 15px; }
+  .points { display: flex; gap: 28px; margin-top: 30px; font-size: 14px; color: var(--muted); }
+  .points div::before { content: '✓'; color: var(--oak); font-weight: 700; margin-right: 8px; }
+  section { padding: 84px 0; }
+  .sand { background: var(--sand); }
+  .eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: 12px; font-weight: 700; color: var(--oak); }
+  .head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 40px; gap: 40px; }
+  .head h2 { font-size: 44px; margin-top: 10px; max-width: 560px; }
+  .head p { max-width: 420px; color: var(--muted); }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card { background: #fff; border-radius: 12px; overflow: hidden; }
+  .card .ph { height: 250px; }
+  .card div.t { padding: 22px 24px 26px; }
+  .card h3 { font-size: 26px; }
+  .card p { color: var(--muted); font-size: 15px; margin-top: 8px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; counter-reset: s; }
+  .steps div { border-top: 2px solid var(--ink); padding-top: 18px; }
+  .steps div::before { counter-increment: s; content: '0' counter(s); font-family: 'DM Serif Display'; font-size: 34px; color: var(--oak); }
+  .steps h3 { font-size: 22px; margin: 6px 0; }
+  .steps p { color: var(--muted); font-size: 15px; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .split .ph { height: 460px; border-radius: 14px; overflow: hidden; }
+  .areas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .areas span { background: #fff; border-radius: 99px; padding: 8px 16px; font-size: 14px; }
+  .quote { background: var(--navy); color: #fff; border-radius: 16px; padding: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .quote h2 { font-size: 44px; }
+  .quote p { color: #c9d1ce; margin-top: 14px; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  input, select, textarea { font: inherit; border: 0; border-radius: 6px; padding: 14px; width: 100%; }
+  textarea { grid-column: span 2; height: 96px; }
+  form .btn { grid-column: span 2; border: 0; text-align: center; }
+  footer { padding: 40px 0; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; }
+  @media (max-width: 700px) {
+    .wrap { padding: 0 20px; }
+    .top, nav, header .btn { display: none; }
+    header .wrap { height: 68px; }
+    .burger { display: block !important; }
+    .hero { grid-template-columns: 1fr; gap: 28px; padding-top: 16px; padding-bottom: 48px; }
+    .hero h1 { font-size: 42px; }
+    .hero .media { height: 300px; order: -1; }
+    .points { flex-direction: column; gap: 6px; }
+    section { padding: 56px 0; }
+    .head { display: block; }
+    .head h2 { font-size: 34px; }
+    .cards, .steps, .split, .quote, form { grid-template-columns: 1fr; }
+    .split .ph { height: 260px; }
+    .quote { padding: 28px; }
+    .quote h2 { font-size: 32px; }
+    textarea, form .btn { grid-column: auto; }
+    footer .wrap { display: block; }
+  }
+  .burger { display: none; width: 26px; height: 2px; background: var(--ink); box-shadow: 0 8px 0 var(--ink), 0 -8px 0 var(--ink); }
+</style>
+</head>
+<body>
+  <div class="top"><div class="wrap"><span>Kitchen design and fitting across Northfield and surrounding villages</span><span>Mon to Sat, 8am to 6pm</span></div></div>
+  <header><div class="wrap">
+    <div class="logo"><span>H</span>Hartwell Kitchens</div>
+    <nav><a>Kitchens</a><a>Our process</a><a>Recent installs</a><a>Areas we cover</a><a>Contact</a></nav>
+    <a class="btn" href="#">Book a free home visit</a>
+    <i class="burger"></i>
+  </div></header>
+
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">Design, supply and fitting</p>
+      <h1>Kitchens planned around the way you cook</h1>
+      <p>We measure, design and fit your kitchen with one team from the first visit to the last cupboard handle, and give you a fixed price before any work starts.</p>
+      <a class="btn oak" href="#">Book a free home visit</a>&nbsp; <a class="btn line" href="#">See recent installs</a>
+      <div class="points"><div>Fixed written quote</div><div>One project lead</div><div>Tidy, insured fitters</div></div>
+    </div>
+    <div class="media"><img src="img/kitchen-1.jpg" alt=""><div class="tag"><b>Shaker kitchen in sage</b>Fitted in a 1930s semi</div></div>
+  </div>
+
+  <section class="sand"><div class="wrap">
+    <div class="head"><div><p class="eyebrow">What we do</p><h2>Three ways we can help with your kitchen</h2></div><p>Whether you want a full renovation or new doors on a layout that already works, we will tell you honestly which makes sense.</p></div>
+    <div class="cards">
+      <div class="card"><div class="ph"><img src="img/kitchen-2.jpg" alt=""></div><div class="t"><h3>Full kitchen renovation</h3><p>Design, removal, plumbing, electrics, tiling and fitting, managed as one job.</p></div></div>
+      <div class="card"><div class="ph"><img src="img/kitchen-3.jpg" alt=""></div><div class="t"><h3>Bespoke cabinetry</h3><p>Made-to-measure units for awkward corners, alcoves and older homes.</p></div></div>
+      <div class="card"><div class="ph"><img src="img/kitchen-4.jpg" alt=""></div><div class="t"><h3>Worktops and refits</h3><p>New surfaces, doors and appliances on the layout you already have.</p></div></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="head"><div><p class="eyebrow">How it works</p><h2>From first visit to finished kitchen</h2></div></div>
+    <div class="steps">
+      <div><h3>Home visit</h3><p>We measure up and talk through how you use the room.</p></div>
+      <div><h3>Design and quote</h3><p>You get drawings and a fixed, itemised price.</p></div>
+      <div><h3>Fitting</h3><p>One project lead keeps the job on schedule.</p></div>
+      <div><h3>Handover</h3><p>We walk you through everything and tidy up.</p></div>
+    </div>
+  </div></section>
+
+  <section class="sand"><div class="wrap split">
+    <div class="ph"><img src="img/kitchen-5.jpg" alt=""></div>
+    <div><p class="eyebrow">Areas we cover</p><h2 style="font-size:44px;margin-top:10px">Local fitters, within 25 miles of Northfield</h2><p style="color:var(--muted);margin-top:16px">Our team lives and works locally, so we can visit quickly and come back if anything needs adjusting.</p>
+      <div class="areas"><span>Northfield</span><span>Ashby Green</span><span>Kingsmere</span><span>Little Haddon</span><span>Westbrook</span><span>Elmstead</span></div></div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="quote">
+      <div><h2>Tell us about your kitchen</h2><p>Share a few details and we will call to arrange a free home visit at a time that suits you.</p></div>
+      <form><input placeholder="Your name"><input placeholder="Phone number"><input placeholder="Email"><select><option>Type of project</option></select><textarea placeholder="Anything we should know?"></textarea><a class="btn oak" href="#">Request a home visit</a></form>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap"><span>Hartwell Kitchens</span><span>Concept website by Evergrove</span></div></footer>
+</body>
+</html>

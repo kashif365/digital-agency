@@ -71,12 +71,12 @@ class PageResource extends Resource
                         ]),
                         TextInput::make('data.eyebrow')->label('Eyebrow')->maxLength(120),
                         TextInput::make('data.heading')->label('Heading')->maxLength(255)
-                            ->helperText('Wrap words in asterisks to show them in green, like *this*.'),
+                            ->helperText('Wrap words in asterisks to set them in italic, like *this*.'),
                         Textarea::make('data.lead')->label('Supporting text')->rows(2)->maxLength(600),
                         Fields::rich('data.body', 'Body')
                             ->visible($typeIn(['statement', 'intro', 'rich_text', 'contact_form'])),
                         Fields::media('data.media_id', 'Image')
-                            ->visible($typeIn(['hero', 'page_hero', 'intro', 'split'])),
+                            ->visible($typeIn(['hero', 'page_hero', 'intro', 'split', 'process', 'comparison'])),
                         Grid::make(3)
                             ->visible($typeIn(['hero', 'intro']))
                             ->schema([
@@ -105,7 +105,7 @@ class PageResource extends Resource
                         Fields::items('data.items', 'Items', withIcon: true, withLink: true, withMedia: true)
                             ->helperText(fn (Get $get) => $get('type') === 'comparison'
                                 ? 'Title is the usual approach. Text is how you do it instead.'
-                                : ($get('type') === 'hero' ? 'Each item is one hero slide: its title is the tab, its text is the caption.' : null))
+                                : ($get('type') === 'hero' ? 'The first four items with images form the hero collage: a large desktop screenshot, a phone screenshot, then two smaller pieces of work. Title is the type of work, text is the project name.' : null))
                             ->visible($typeIn(['hero', 'statement', 'intro', 'value_grid', 'process', 'comparison', 'split', 'dual_cta', 'consultation_form', 'contact_form'])),
                     ]),
             ]),

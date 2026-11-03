@@ -9,6 +9,13 @@ use Illuminate\Database\Seeder;
 
 class IndustrySeeder extends Seeder
 {
+    /** Starter photo for each industry, by slug. */
+    public const IMAGES = [
+        'healthcare-wellness' => 'industry-healthcare', 'real-estate' => 'industry-real-estate', 'e-commerce' => 'industry-ecommerce',
+        'automotive' => 'industry-automotive', 'logistics-transportation' => 'industry-logistics', 'professional-services' => 'industry-professional',
+        'home-services' => 'industry-home-services', 'education-training' => 'industry-education',
+    ];
+
     public function run(): void
     {
         foreach (require __DIR__.'/content/industries.php' as $index => $row) {
@@ -21,6 +28,7 @@ class IndustrySeeder extends Seeder
                 'approach' => ServiceSeeder::items($row['approach']),
                 'sort_order' => $index + 1,
                 'status' => ContentStatus::Published,
+                'featured_media_id' => isset(self::IMAGES[$row['slug']]) ? MediaSeeder::id(self::IMAGES[$row['slug']]) : null,
             ]);
 
             if ($industry->wasRecentlyCreated) {

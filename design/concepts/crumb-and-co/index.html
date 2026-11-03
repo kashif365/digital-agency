@@ -1,0 +1,88 @@
+<!doctype html>
+<!-- Concept social content plan for a fictional business, used as an Evergrove sample. Not client work. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crumb &amp; Co. social plan (concept)</title>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --cream: #f7efe3; --brown: #4a2e1f; --rust: #c0602b; --butter: #f2d38a; --ink: #2b211b; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: Karla, sans-serif; background: #ebe7dc; color: var(--ink); padding: 48px; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .board { max-width: 1340px; margin: 0 auto; display: grid; grid-template-columns: 430px 1fr; gap: 40px; align-items: start; }
+  .label { font-size: 11px; text-transform: uppercase; letter-spacing: .16em; font-weight: 700; color: #5e6662; margin-bottom: 12px; }
+  .phone { background: #fff; border-radius: 34px; padding: 14px; box-shadow: 0 30px 60px -36px rgba(0,0,0,.5); }
+  .profile { padding: 14px 10px; display: flex; gap: 16px; align-items: center; }
+  .av { width: 74px; height: 74px; border-radius: 50%; background: var(--brown); color: var(--butter); display: grid; place-items: center; font-family: 'Young Serif'; font-size: 26px; box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--rust); flex-shrink: 0; }
+  .profile h2 { font-family: 'Young Serif'; font-size: 20px; font-weight: 400; }
+  .profile p { font-size: 13px; color: #555; margin-top: 2px; line-height: 1.4; }
+  .highlights { display: flex; gap: 14px; padding: 6px 10px 14px; }
+  .highlights div { text-align: center; font-size: 11px; color: #444; }
+  .highlights i { display: block; width: 52px; height: 52px; border-radius: 50%; background: var(--cream); border: 1.5px solid #ddd; margin-bottom: 4px; font-style: normal; display: grid; place-items: center; font-family: 'Young Serif'; color: var(--rust); font-size: 18px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; border-radius: 4px 4px 20px 20px; overflow: hidden; }
+  .grid > div { aspect-ratio: 4 / 5; position: relative; overflow: hidden; }
+  .t { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 12px; text-align: center; font-family: 'Young Serif'; line-height: 1.1; }
+  .t.rust { background: var(--rust); color: var(--cream); font-size: 17px; }
+  .t.butter { background: var(--butter); color: var(--brown); font-size: 16px; }
+  .t.brown { background: var(--brown); color: var(--butter); font-size: 16px; }
+  .t small { font-family: Karla; font-size: 9px; text-transform: uppercase; letter-spacing: .14em; margin-top: 8px; display: block; opacity: .8; }
+  .ov { position: absolute; left: 8px; bottom: 8px; background: var(--cream); color: var(--brown); font-size: 10px; font-weight: 700; padding: 4px 7px; border-radius: 3px; }
+  .plan h1 { font-family: 'Young Serif'; font-weight: 400; font-size: 44px; color: var(--brown); line-height: 1.05; }
+  .plan > p { color: #6b5d52; margin: 12px 0 26px; max-width: 620px; line-height: 1.6; }
+  .themes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+  .themes div { border-radius: 10px; padding: 16px; font-size: 13px; line-height: 1.45; }
+  .themes b { display: block; font-family: 'Young Serif'; font-weight: 400; font-size: 18px; margin-bottom: 6px; }
+  .cal { background: #fff; border-radius: 12px; padding: 22px; }
+  .cal table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .cal th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: #8a7b70; padding: 0 8px 10px; }
+  .cal td { border-top: 1px solid #efe6da; padding: 10px 8px; vertical-align: top; width: 14%; }
+  .cal td:first-child { width: 9%; font-weight: 700; color: var(--brown); }
+  .e { display: block; border-radius: 6px; padding: 7px 8px; font-size: 12px; line-height: 1.3; }
+  .e i { display: block; font-style: normal; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; opacity: .7; margin-bottom: 2px; }
+  .r { background: #f6dccb; color: #7a3612; } .bu { background: #fbefcf; color: #6b4f12; } .br { background: #eadfd6; color: var(--brown); } .g { background: #e4ecd9; color: #3d5428; }
+  @media (max-width: 700px) { body { padding: 16px; } .board { grid-template-columns: 1fr; } .themes { grid-template-columns: 1fr 1fr; } .cal { overflow: hidden; } }
+</style>
+</head>
+<body>
+<div class="board">
+  <div>
+    <p class="label">Profile grid preview</p>
+    <div class="phone">
+      <div class="profile"><div class="av">C&amp;</div><div><h2>Crumb &amp; Co. Bakery</h2><p>Sourdough, pastries and birthday cakes.<br>Baked every morning on Market Street.</p></div></div>
+      <div class="highlights"><div><i>B</i>Bread</div><div><i>C</i>Cakes</div><div><i>O</i>Orders</div><div><i>F</i>Find us</div></div>
+      <div class="grid">
+        <div><img src="img/bakery-1.jpg" alt=""><span class="ov">Today's bake</span></div>
+        <div><div class="t rust">The 5am shift that makes your Saturday<small>Behind the bench</small></div></div>
+        <div><img src="img/bakery-5.jpg" alt=""></div>
+        <div><img src="img/bakery-6.jpg" alt=""><span class="ov">Reel</span></div>
+        <div><div class="t butter">Order birthday cakes 48 hours ahead<small>How to order</small></div></div>
+        <div><img src="img/bakery-8.jpg" alt=""></div>
+        <div><div class="t brown">Name our new autumn loaf<small>Comment below</small></div></div>
+        <div><img src="img/bakery-7.jpg" alt=""></div>
+        <div><img src="img/bakery-4.jpg" alt=""><span class="ov">Visit us</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="plan">
+    <p class="label">Content plan · October</p>
+    <h1>A month of posts that sound like the bakery, not like an ad</h1>
+    <p>Four recurring themes, planned three weeks ahead and approved in one review. Every post points to one of two actions: visit the shop, or order a cake.</p>
+    <div class="themes">
+      <div class="r"><b>Today's bake</b>What is fresh this morning, posted by 8am.</div>
+      <div class="bu"><b>How to order</b>Cakes, platters and collection times.</div>
+      <div class="br"><b>Behind the bench</b>The people and the early starts.</div>
+      <div class="g"><b>Community</b>Polls, names, and local events.</div>
+    </div>
+    <div class="cal"><table>
+      <tr><th></th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+      <tr><td>Week 1</td><td><span class="e r"><i>Post</i>Sourdough is back</span></td><td></td><td><span class="e br"><i>Reel</i>Shaping the loaves</span></td><td></td><td><span class="e bu"><i>Story</i>Weekend cake slots</span></td><td><span class="e r"><i>Post</i>Saturday bake</span></td></tr>
+      <tr><td>Week 2</td><td><span class="e g"><i>Poll</i>Name the autumn loaf</span></td><td></td><td><span class="e r"><i>Post</i>Cinnamon buns</span></td><td><span class="e bu"><i>Post</i>How birthday orders work</span></td><td></td><td><span class="e br"><i>Reel</i>5am shift</span></td></tr>
+      <tr><td>Week 3</td><td><span class="e r"><i>Post</i>Pumpkin pie returns</span></td><td><span class="e g"><i>Story</i>Market Street fair</span></td><td></td><td><span class="e bu"><i>Post</i>Office platters</span></td><td><span class="e r"><i>Story</i>Friday specials</span></td><td></td></tr>
+      <tr><td>Week 4</td><td></td><td><span class="e br"><i>Post</i>Meet the bakers</span></td><td><span class="e g"><i>Post</i>Loaf name winner</span></td><td></td><td><span class="e bu"><i>Reel</i>Halloween cake orders</span></td><td><span class="e r"><i>Post</i>Saturday bake</span></td></tr>
+    </table></div>
+  </div>
+</div>
+</body>
+</html>

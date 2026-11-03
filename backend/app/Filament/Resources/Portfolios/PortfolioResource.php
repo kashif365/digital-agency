@@ -10,6 +10,8 @@ use App\Models\Portfolio;
 use BackedEnum;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -45,6 +47,9 @@ class PortfolioResource extends Resource
                 Fields::title(),
                 Fields::slug(),
                 TextInput::make('client_name')->maxLength(160),
+                TextInput::make('website_url')->label('Live website')->url()->maxLength(255)
+                    ->helperText('Shown on real client work only. Link it once the client has approved.'),
+                DatePicker::make('completed_on')->label('Completed'),
                 Select::make('industry_id')->relationship('industry', 'name')->preload(),
                 Select::make('services')->relationship('services', 'title')->multiple()->preload(),
                 Fields::status(),
@@ -58,10 +63,27 @@ class PortfolioResource extends Resource
                 Fields::rich('overview', 'Project overview'),
                 Fields::rich('challenges'),
                 Fields::rich('strategy'),
+                Fields::items('deliverables', 'Deliverables'),
                 Fields::rich('outcomes'),
                 Toggle::make('outcomes_verified')->label('Outcomes are verified and approved for publication')
                     ->helperText('Outcomes stay private until this is on.'),
             ]),
+            Section::make('Gallery')
+                ->description('Screenshots and work samples shown on the case study, in order. Only use work you are allowed to show.')
+                ->schema([
+                    Repeater::make('gallery')
+                        ->hiddenLabel()
+                        ->schema([
+                            Fields::media('media_id', 'Image')->required(),
+                            Select::make('kind')->options(['desktop' => 'Desktop screen', 'mobile' => 'Mobile screen', 'detail' => 'Detail or artwork'])
+                                ->default('desktop')->required()->native(false),
+                            TextInput::make('caption')->maxLength(160),
+                        ])
+                        ->columns(3)
+                        ->defaultItems(0)
+                        ->reorderableWithButtons()
+                        ->collapsible(),
+                ]),
             Fields::seo(),
         ])->columns(1);
     }

@@ -16,13 +16,28 @@ class ServiceSeeder extends Seeder
         'growth-analytics' => 'Growth & Analytics',
     ];
 
+    /** Starter photo for each service, by slug. */
+    public const IMAGES = [
+        'search-engine-optimization' => 'service-seo', 'local-seo' => 'service-local-seo', 'technical-seo' => 'service-technical-seo',
+        'pay-per-click-advertising' => 'service-ppc', 'social-media-marketing' => 'service-social-marketing',
+        'social-media-management' => 'service-social-management', 'content-marketing' => 'service-content', 'video-marketing' => 'service-video',
+        'website-design-development' => 'service-web', 'landing-page-design' => 'service-landing', 'branding-graphic-design' => 'service-branding',
+        'email-marketing' => 'service-email', 'conversion-rate-optimization' => 'service-cro', 'marketing-analytics-reporting' => 'service-analytics',
+    ];
+
+    /** @return array<int, array<string, mixed>> */
+    public static function rows(): array
+    {
+        return require __DIR__.'/content/services.php';
+    }
+
     public function run(): void
     {
         foreach (array_keys(self::CATEGORIES) as $index => $slug) {
             ServiceCategory::firstOrCreate(['slug' => $slug], ['name' => self::CATEGORIES[$slug], 'sort_order' => $index + 1]);
         }
 
-        foreach (require __DIR__.'/content/services.php' as $index => $row) {
+        foreach (self::rows() as $index => $row) {
             $service = Service::firstOrCreate(['slug' => $row['slug']], [
                 'service_category_id' => ServiceCategory::where('slug', $row['category'])->value('id'),
                 'title' => $row['title'],
@@ -40,6 +55,7 @@ class ServiceSeeder extends Seeder
                 'featured_order' => $row['homepage'] ?? 0,
                 'sort_order' => $index + 1,
                 'status' => ContentStatus::Published,
+                'featured_media_id' => isset(self::IMAGES[$row['slug']]) ? MediaSeeder::id(self::IMAGES[$row['slug']]) : null,
             ]);
 
             if (! $service->wasRecentlyCreated) {

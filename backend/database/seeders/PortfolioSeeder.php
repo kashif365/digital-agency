@@ -3,47 +3,57 @@
 namespace Database\Seeders;
 
 use App\Enums\ContentStatus;
+use App\Models\Industry;
 use App\Models\Portfolio;
 use App\Models\Service;
 use Illuminate\Database\Seeder;
 
 /**
- * Illustrative samples only. They carry no client names or outcomes, are labelled
+ * Concept projects only. They carry no client names or outcomes, are labelled
  * publicly, and drop out of the listing as soon as real work is published.
  */
 class PortfolioSeeder extends Seeder
 {
-    private const IMAGES = [
-        'sample-local-service-website' => 'work-website',
-        'sample-search-visibility-roadmap' => 'work-roadmap',
-        'sample-multi-channel-campaign' => 'work-campaign',
-    ];
+    /** @return array<int, array<string, mixed>> */
+    public static function rows(): array
+    {
+        return require __DIR__.'/content/portfolio.php';
+    }
 
     public function run(): void
     {
-        $rows = [...require __DIR__.'/content/portfolio.php', ...require __DIR__.'/content/portfolio-extra.php'];
+        foreach (self::rows() as $index => $row) {
+            $project = Portfolio::firstOrNew(['slug' => $row['slug']]);
 
-        foreach ($rows as $index => $row) {
-            $project = Portfolio::firstOrCreate(['slug' => $row['slug']], [
-                'title' => $row['title'],
-                'is_illustrative' => true,
-                'summary' => $row['summary'],
-                'overview' => $row['overview'],
-                'challenges' => $row['challenges'],
-                'strategy' => $row['strategy'],
-                'sort_order' => $index + 1,
-                'status' => ContentStatus::Published,
-            ]);
-
-            if ($project->wasRecentlyCreated) {
-                $project->services()->sync(Service::whereIn('slug', $row['services'])->pluck('id'));
-            }
-
-            $image = $row['image_key'] ?? self::IMAGES[$row['slug']] ?? null;
-
-            if ($image && ! $project->featured_media_id) {
-                $project->update(['featured_media_id' => MediaSeeder::id($image)]);
+            if (! $project->exists) {
+                self::fill($project, $row, $index);
             }
         }
+    }
+
+    /** Writes a concept project's content, images, and services, replacing what it had. */
+    public static function fill(Portfolio $project, array $row, int $index): void
+    {
+        $project->fill([
+            'title' => $row['title'],
+            'is_illustrative' => true,
+            'client_name' => null,
+            'industry_id' => $row['industry'] ? Industry::where('slug', $row['industry'])->value('id') : null,
+            'summary' => $row['summary'],
+            'overview' => $row['overview'],
+            'challenges' => $row['challenges'],
+            'strategy' => $row['strategy'],
+            'deliverables' => ServiceSeeder::items($row['deliverables']),
+            'featured_media_id' => MediaSeeder::id($row['image']),
+            'gallery' => array_map(fn (array $entry) => [
+                'media_id' => MediaSeeder::id($entry[0]),
+                'kind' => $entry[1],
+                'caption' => $entry[2],
+            ], $row['gallery']),
+            'sort_order' => $index + 1,
+            'status' => ContentStatus::Published,
+        ])->save();
+
+        $project->services()->sync(Service::whereIn('slug', $row['services'])->pluck('id'));
     }
 }

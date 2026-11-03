@@ -18,8 +18,9 @@ class Portfolio extends Model
     use HasFeaturedMedia, HasSeo, Publishable, RevalidatesFrontend, SoftDeletes;
 
     protected $fillable = [
-        'title', 'slug', 'client_name', 'industry_id', 'is_illustrative', 'summary', 'overview', 'challenges',
-        'strategy', 'outcomes', 'outcomes_verified', 'featured_media_id', 'is_featured', 'sort_order', 'status',
+        'title', 'slug', 'client_name', 'website_url', 'completed_on', 'industry_id', 'is_illustrative', 'summary', 'overview',
+        'challenges', 'strategy', 'deliverables', 'outcomes', 'outcomes_verified', 'featured_media_id', 'gallery', 'is_featured',
+        'sort_order', 'status',
     ];
 
     protected function casts(): array
@@ -29,6 +30,9 @@ class Portfolio extends Model
             'challenges' => SanitizedHtml::class,
             'strategy' => SanitizedHtml::class,
             'outcomes' => SanitizedHtml::class,
+            'gallery' => 'array',
+            'deliverables' => 'array',
+            'completed_on' => 'date',
             'is_illustrative' => 'boolean',
             'outcomes_verified' => 'boolean',
             'is_featured' => 'boolean',
@@ -44,5 +48,22 @@ class Portfolio extends Model
     public function services(): BelongsToMany
     {
         return $this->belongsToMany(Service::class);
+    }
+
+    /** Gallery entries with their media loaded, in order. Entries whose image was deleted are skipped. */
+    public function galleryWithMedia(): array
+    {
+        $entries = collect($this->gallery ?? []);
+        $media = Media::whereIn('id', $entries->pluck('media_id')->filter())->get()->keyBy('id');
+
+        return $entries
+            ->map(fn (array $entry) => ($image = $media->get($entry['media_id'] ?? null)) ? [
+                'image' => $image->toPublicArray(),
+                'caption' => $entry['caption'] ?? null,
+                'kind' => $entry['kind'] ?? 'desktop',
+            ] : null)
+            ->filter()
+            ->values()
+            ->all();
     }
 }

@@ -42,6 +42,22 @@ php artisan queue:restart
 
 Point the web root at `backend/public`. Keep the seeders out of later releases unless you intend to add missing records: they never overwrite existing rows.
 
+### Applying new starter copy to an existing site
+
+Because seeders never overwrite, copy changed in `database/seeders/content/` reaches a live database only through the admin or through this command. It replaces editors' changes on the pages it touches, so back up the database first and run it once, deliberately:
+
+```bash
+php artisan content:refresh --navigation --services --photos   # Asks for confirmation
+php artisan content:refresh --page=home --page=about-us         # Only these pages
+```
+
+| Option | Replaces |
+|---|---|
+| (none) | Sections and SEO text of every built-in page, or only those named with `--page` |
+| `--navigation` | Header menu, footer links, and the header button |
+| `--services` | Each starter service's one-line summary and page headline |
+| `--photos` | Starter stock photos on portfolio samples, and the default page banner if it is a starter photo. Real uploads are kept. |
+
 ### Queue worker
 
 Lead emails and cache refreshes run on the queue, so the worker must stay up. If it stops, leads are still saved but emails wait.
@@ -111,7 +127,8 @@ HSTS applies to subdomains, so make sure `api.example.com` and any other subdoma
 ### Business decisions
 
 - [ ] Check that the Evergrove name is free to use: run a trademark search in each country you trade in, and buy the domain
-- [ ] Confirm the promises in the **Why Evergrove** comparison on the homepage match how you actually work, especially that clients keep their own ad accounts and data
+- [ ] Confirm the promises in the **Commitments** comparison (homepage and About page) and the **What you can expect** list in the homepage introduction match how you actually work, especially that clients keep their own ad accounts and data
+- [ ] Confirm the four process stages on the homepage and About page describe what you really do, including the written summary after discovery and the regular reviews
 
 ### Client content
 
@@ -126,6 +143,7 @@ HSTS applies to subdomains, so make sure `api.example.com` and any other subdoma
 - [ ] Replace the illustrative samples with approved case studies, or keep them labelled
 - [ ] Add client-approved testimonials, or leave the section hidden
 - [ ] Add real team details to the About page, and replace the starter blog photos as real ones become available
+- [ ] Upload real photography where it helps: a team or workspace photo on the About page's story section, and a default page banner in **Site Settings** if you want one. Leave them empty rather than using stock photos of people.
 - [ ] Review the budget options and their currency in **Site Settings > Forms**
 
 ### Technical

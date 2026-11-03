@@ -67,7 +67,7 @@ class ManageSettings extends Page
                         ->helperText('Replaces {company} everywhere it appears in your content.'),
                     Fields::media('company.logo_media_id', 'Logo'),
                     Fields::media('company.banner_media_id', 'Default page banner')
-                        ->helperText('Shown behind the heading on inner pages.'),
+                        ->helperText('Shown as a wide image below the heading on inner pages. Use real photos of your team, workspace, or work, at least 1920px wide.'),
                     TextInput::make('company.tagline')->maxLength(160),
                     Textarea::make('company.description')->label('Short description')->rows(3)->maxLength(500),
                 ]),
